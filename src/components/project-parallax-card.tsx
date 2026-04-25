@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import {
   motion,
@@ -19,6 +20,7 @@ type ProjectParallaxCardProps = {
   secondary: string;
   index: string;
   signature: string;
+  cardImage?: string;
   local?: boolean;
   onActiveChange?: (active: boolean) => void;
   onOpen?: () => void;
@@ -32,6 +34,7 @@ export function ProjectParallaxCard({
   secondary,
   index,
   signature,
+  cardImage,
   onActiveChange,
   onOpen,
 }: ProjectParallaxCardProps) {
@@ -171,6 +174,25 @@ export function ProjectParallaxCard({
             }}
           />
           <div className="absolute right-20 top-16 size-4 rounded-full bg-white shadow-[0_0_18px_rgba(255,255,255,0.95)]" />
+          {cardImage ? (
+            <motion.div
+              className="absolute inset-5 overflow-hidden rounded-[16px] bg-white/28 shadow-[0_18px_34px_rgba(15,23,42,0.2)] ring-1 ring-white/45"
+              style={{
+                x: shouldReduceMotion ? 0 : artworkX,
+                y: shouldReduceMotion ? 0 : artworkY,
+                z: shouldReduceMotion ? 0 : 62,
+              }}
+            >
+              <Image
+                src={cardImage}
+                alt=""
+                fill
+                sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0)_45%,rgba(15,23,42,0.08))]" />
+            </motion.div>
+          ) : null}
         </div>
 
         <div
