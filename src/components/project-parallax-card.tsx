@@ -21,19 +21,19 @@ type ProjectParallaxCardProps = {
   signature: string;
   local?: boolean;
   onActiveChange?: (active: boolean) => void;
+  onOpen?: () => void;
 };
 
 export function ProjectParallaxCard({
   title,
   description,
-  href,
   label,
   accent,
   secondary,
   index,
   signature,
-  local = false,
   onActiveChange,
+  onOpen,
 }: ProjectParallaxCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
@@ -72,10 +72,9 @@ export function ProjectParallaxCard({
   };
 
   return (
-    <motion.a
-      href={href}
-      target={local ? undefined : "_blank"}
-      rel={local ? undefined : "noreferrer"}
+    <motion.button
+      type="button"
+      onClick={onOpen}
       onFocus={() => onActiveChange?.(true)}
       onBlur={() => onActiveChange?.(false)}
       onPointerEnter={() => onActiveChange?.(true)}
@@ -85,7 +84,7 @@ export function ProjectParallaxCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.48, ease: "easeOut" }}
       whileHover={shouldReduceMotion ? undefined : { y: -6 }}
-      className="group relative block focus-visible:outline-none"
+      className="group relative block cursor-pointer text-left focus-visible:outline-none"
       style={{ perspective: 1000 }}
     >
       <div
@@ -96,7 +95,7 @@ export function ProjectParallaxCard({
         }}
       />
       <motion.article
-        className="relative min-h-[430px] overflow-hidden rounded-[22px] bg-white shadow-[0_16px_38px_rgba(15,23,42,0.14)] ring-1 ring-black/5 transition-shadow duration-300 group-hover:shadow-[0_26px_70px_rgba(15,23,42,0.22)] group-focus-visible:ring-3 group-focus-visible:ring-ring/40 sm:min-h-[480px]"
+        className="relative min-h-[430px] overflow-hidden rounded-[22px] bg-white shadow-[0_16px_38px_rgba(15,23,42,0.14)] transition-shadow duration-300 group-hover:shadow-[0_26px_70px_rgba(15,23,42,0.22)] group-focus-visible:ring-3 group-focus-visible:ring-ring/40 sm:min-h-[480px]"
         style={{
           rotateX: shouldReduceMotion ? 0 : rotateX,
           rotateY: shouldReduceMotion ? 0 : rotateY,
@@ -203,6 +202,6 @@ export function ProjectParallaxCard({
           </div>
         </div>
       </motion.article>
-    </motion.a>
+    </motion.button>
   );
 }
