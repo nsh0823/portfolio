@@ -1,5 +1,5 @@
-import { ProjectsShowcase } from "@/components/projects-showcase";
+import { PortfolioScrollPage } from "@/components/portfolio-scroll-page";
 
 export default function Home() {
-  return <ProjectsShowcase />;
+  return <PortfolioScrollPage />;
 }
