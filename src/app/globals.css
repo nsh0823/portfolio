@@ -127,6 +127,27 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply scroll-smooth font-sans;
+  }
+  html:lang(ko) body {
+    word-break: keep-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+@layer utilities {
+  .portfolio-surface {
+    background:
+      radial-gradient(circle at 50% 42%, rgba(15,118,110,0.22), transparent 28%),
+      radial-gradient(circle at 42% 50%, rgba(244,211,94,0.18), transparent 30%),
+      linear-gradient(135deg, #f8fbfb 0%, #eef5f6 48%, #f6f8f8 100%);
+  }
+
+  .dark .portfolio-surface {
+    background:
+      radial-gradient(circle at 50% 42%, rgba(20,184,166,0.2), transparent 30%),
+      radial-gradient(circle at 42% 50%, rgba(244,211,94,0.12), transparent 32%),
+      linear-gradient(135deg, #050816 0%, #0f172a 48%, #111827 100%);
   }
 }
