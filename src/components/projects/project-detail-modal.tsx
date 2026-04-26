@@ -21,6 +21,9 @@ type ProjectDetailModalProps = {
 
 export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [loadedScreenshots, setLoadedScreenshots] = useState<Set<string>>(
+    () => new Set(),
+  );
 
   useEffect(() => {
     if (!project) {
@@ -113,6 +116,9 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                     {project.screenshots.map((screenshot, screenshotIndex) => {
                       const offset = screenshotIndex - activeSlide;
                       const isVisible = Math.abs(offset) <= 1;
+                      const shouldPrioritize = Math.abs(offset) <= 1;
+                      const screenshotKey = `${project.title}-${screenshot.src ?? screenshot.title}`;
+                      const isScreenshotLoaded = loadedScreenshots.has(screenshotKey);
 
                       return (
                         <motion.div
@@ -138,12 +144,34 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                             </div>
                             {screenshot.src ? (
                               <div className="relative h-[calc(100%-2rem)] overflow-hidden bg-slate-950/5">
+                                <div
+                                  className={`absolute inset-0 bg-[linear-gradient(110deg,rgba(255,255,255,0.1),rgba(15,23,42,0.08),rgba(255,255,255,0.12))] transition-opacity duration-300 dark:bg-[linear-gradient(110deg,rgba(255,255,255,0.05),rgba(255,255,255,0.1),rgba(255,255,255,0.05))] ${
+                                    isScreenshotLoaded ? "opacity-0" : "animate-pulse opacity-100"
+                                  }`}
+                                />
                                 <Image
                                   src={screenshot.src}
                                   alt={screenshot.title}
                                   fill
+                                  priority={shouldPrioritize}
+                                  loading={shouldPrioritize ? undefined : "lazy"}
+                                  fetchPriority={shouldPrioritize ? "high" : "auto"}
+                                  quality={82}
                                   sizes="(min-width: 1024px) 620px, 90vw"
-                                  className="object-contain"
+                                  onLoad={() => {
+                                    setLoadedScreenshots((current) => {
+                                      if (current.has(screenshotKey)) {
+                                        return current;
+                                      }
+
+                                      const next = new Set(current);
+                                      next.add(screenshotKey);
+                                      return next;
+                                    });
+                                  }}
+                                  className={`object-contain transition-opacity duration-300 ${
+                                    isScreenshotLoaded ? "opacity-100" : "opacity-0"
+                                  }`}
                                 />
                                 <div className="absolute bottom-5 left-5 rounded-full bg-white/88 px-3 py-1 text-xs font-semibold text-black/58 shadow-sm">
                                   {screenshot.title}
