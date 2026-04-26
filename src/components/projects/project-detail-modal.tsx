@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale } from "@/components/locale-context";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
+  Copy,
   GitBranch,
   ExternalLink,
   X,
@@ -20,10 +22,13 @@ type ProjectDetailModalProps = {
 };
 
 export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps) {
+  const { locale } = useLocale();
+
   const [activeSlide, setActiveSlide] = useState(0);
   const [loadedScreenshots, setLoadedScreenshots] = useState<Set<string>>(
     () => new Set(),
   );
+  const [copiedField, setCopiedField] = useState<"email" | "password" | null>(null);
 
   useEffect(() => {
     if (!project) {
@@ -45,7 +50,20 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
     };
   }, [onClose, project]);
 
+  useEffect(() => {
+    if (!copiedField) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setCopiedField(null);
+    }, 1200);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [copiedField]);
+
   const slideCount = project?.screenshots.length ?? 0;
+  const demoAccount = project?.demoAccount;
   const showPrevious = () => {
     if (!slideCount) {
       return;
@@ -60,12 +78,20 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
     setActiveSlide((current) => (current + 1) % slideCount);
   };
+  const copyDemoValue = async (field: "email" | "password", value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedField(field);
+    } catch {
+      setCopiedField(null);
+    }
+  };
 
   const modal = (
     <AnimatePresence>
       {project ? (
         <motion.div
-          className="fixed inset-0 z-[100] overflow-hidden bg-black/42 px-4 py-6 backdrop-blur-xl sm:px-6"
+          className="fixed inset-0 z-[100] overflow-hidden bg-black/42 px-3 py-4 backdrop-blur-xl sm:px-6 sm:py-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -75,7 +101,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             role="dialog"
             aria-modal="true"
             aria-labelledby="project-detail-title"
-            className="relative mx-auto grid h-[calc(100svh-48px)] w-full max-w-6xl grid-rows-[minmax(300px,42%)_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_100px_rgba(3,7,18,0.35)] transition-colors dark:bg-slate-950 lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none"
+            className="relative mx-auto grid h-[calc(100svh-32px)] w-full max-w-6xl grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-[22px] bg-white shadow-[0_30px_100px_rgba(3,7,18,0.35)] transition-colors dark:bg-slate-950 sm:h-[calc(100svh-48px)] sm:rounded-[28px] lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none"
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
@@ -92,7 +118,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             </button>
 
             <div
-              className="relative min-h-0 overflow-hidden px-5 py-10 sm:px-8 sm:py-14 lg:py-16"
+              className="relative min-h-0 overflow-hidden px-4 py-6 sm:px-8 sm:py-14 lg:py-16"
               style={{
                 background: `
                   radial-gradient(circle at 18% 18%, ${project.secondary}88, transparent 26%),
@@ -106,13 +132,13 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               <div className="pointer-events-none absolute bottom-10 right-0 h-64 w-24 rotate-[24deg] rounded-full bg-white/28 blur-2xl" />
 
               <div className="relative z-10 flex h-full flex-col">
-                <div className="mb-4 flex items-center justify-between pr-12 text-xs font-semibold uppercase tracking-[0.18em] text-white/76 sm:mb-8">
+                <div className="mb-3 flex items-center justify-between pr-12 text-xs font-semibold uppercase tracking-[0.18em] text-white/76 sm:mb-8">
                   <span>{project.label}</span>
                   <span>{project.index}</span>
                 </div>
 
                 <div className="relative flex flex-1 items-center justify-center [perspective:1100px]">
-                  <div className="relative h-[180px] w-full max-w-[620px] sm:h-[260px] lg:h-[360px]">
+                  <div className="relative h-[clamp(138px,28svh,180px)] w-full max-w-[620px] sm:h-[260px] lg:h-[360px]">
                     {project.screenshots.map((screenshot, screenshotIndex) => {
                       const offset = screenshotIndex - activeSlide;
                       const isVisible = Math.abs(offset) <= 1;
@@ -136,14 +162,14 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                           style={{ transformStyle: "preserve-3d" }}
                         >
                           <div className="h-full overflow-hidden rounded-[18px] bg-white shadow-[0_28px_60px_rgba(3,7,18,0.24)] ring-1 ring-white/40">
-                            <div className="flex h-8 items-center gap-1.5 border-b border-black/8 bg-white/92 px-4">
+                            <div className="flex h-7 items-center gap-1.5 border-b border-black/8 bg-white/92 px-3 sm:h-8 sm:px-4">
                               <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                               <span className="size-2.5 rounded-full bg-[#ffbd2e]" />
                               <span className="size-2.5 rounded-full bg-[#28c840]" />
-                              <span className="ml-3 h-3 w-36 rounded-full bg-black/8" />
+                              <span className="ml-3 h-3 w-24 rounded-full bg-black/8 sm:w-36" />
                             </div>
                             {screenshot.src ? (
-                              <div className="relative h-[calc(100%-2rem)] overflow-hidden bg-slate-950/5">
+                              <div className="relative h-[calc(100%-1.75rem)] overflow-hidden bg-slate-950/5 sm:h-[calc(100%-2rem)]">
                                 <div
                                   className={`absolute inset-0 bg-[linear-gradient(110deg,rgba(255,255,255,0.1),rgba(15,23,42,0.08),rgba(255,255,255,0.12))] transition-opacity duration-300 dark:bg-[linear-gradient(110deg,rgba(255,255,255,0.05),rgba(255,255,255,0.1),rgba(255,255,255,0.05))] ${
                                     isScreenshotLoaded ? "opacity-0" : "animate-pulse opacity-100"
@@ -217,7 +243,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   </div>
                 </div>
 
-                <div className="relative z-20 mt-4 flex items-center justify-center gap-3 sm:mt-8">
+                <div className="relative z-20 mt-3 grid grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-2 sm:mt-8 sm:flex sm:justify-center sm:gap-3">
                   <button
                     type="button"
                     aria-label="Previous screenshot"
@@ -226,7 +252,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   >
                     <ChevronLeft className="size-5" />
                   </button>
-                  <p className="min-w-44 text-center text-sm font-medium text-white/78">
+                  <p className="min-w-0 text-center text-xs font-medium leading-5 text-white/82 sm:min-w-44 sm:text-sm">
                     {project.screenshots[activeSlide]?.caption}
                   </p>
                   <button
@@ -280,23 +306,46 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 </a>
               </div>
 
-              {project.demoAccount ? (
+              {demoAccount ? (
                 <section className="mt-5 rounded-[10px] border border-black/8 bg-black/[0.025] px-4 py-3 dark:border-white/10 dark:bg-white/[0.04]">
                   <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
                     Demo account
                   </h3>
+                  <p className="mt-1.5 text-[11px] leading-5 text-black/44 dark:text-white/48">
+                    {
+                      locale === "kr" ? "로그인 후 주요 기능인 글쓰기를 테스트해 보세요." : "Log in to test the main feature, 글쓰기."
+                    }
+                  </p>
                   <div className="mt-2 grid gap-1.5 text-sm leading-6 text-black/64 dark:text-white/66">
-                    <p>
+                    <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
                       <span className="font-semibold text-black/54 dark:text-white/60">Email:</span>{" "}
                       <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68 dark:bg-white/10 dark:text-white/72">
-                        {project.demoAccount.email}
+                        {demoAccount.email}
                       </code>
+                      <button
+                        type="button"
+                        aria-label="Copy demo email"
+                        title={copiedField === "email" ? "Copied" : "Copy email"}
+                        onClick={() => copyDemoValue("email", demoAccount.email)}
+                        className="grid size-6 cursor-pointer place-items-center text-black/42 transition hover:text-black/68 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:text-white/44 dark:hover:text-white/72 dark:focus-visible:ring-white/24"
+                      >
+                        <Copy className="size-3.5" />
+                      </button>
                     </p>
-                    <p>
+                    <p className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
                       <span className="font-semibold text-black/54 dark:text-white/60">Password:</span>{" "}
                       <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68 dark:bg-white/10 dark:text-white/72">
-                        {project.demoAccount.password}
+                        {demoAccount.password}
                       </code>
+                      <button
+                        type="button"
+                        aria-label="Copy demo password"
+                        title={copiedField === "password" ? "Copied" : "Copy password"}
+                        onClick={() => copyDemoValue("password", demoAccount.password)}
+                        className="grid size-6 cursor-pointer place-items-center text-black/42 transition hover:text-black/68 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:text-white/44 dark:hover:text-white/72 dark:focus-visible:ring-white/24"
+                      >
+                        <Copy className="size-3.5" />
+                      </button>
                     </p>
                   </div>
                 </section>
