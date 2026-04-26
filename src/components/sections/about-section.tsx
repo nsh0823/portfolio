@@ -107,9 +107,10 @@ const aboutCopy = {
 
 type AboutSectionProps = {
   id?: string;
+  avatarPriority?: boolean;
 };
 
-export function AboutSection({ id = "about" }: AboutSectionProps) {
+export function AboutSection({ id = "about", avatarPriority = true }: AboutSectionProps) {
   const { locale } = useLocale();
 
   return (
@@ -122,7 +123,7 @@ export function AboutSection({ id = "about" }: AboutSectionProps) {
           <ParallaxAvatar
             src="/images/avatars/violin.png"
             alt="Peter Nam playing violin avatar"
-            priority
+            priority={avatarPriority}
             className="w-full"
             imageClassName="lg:max-h-[calc(100svh-18rem)]"
           />

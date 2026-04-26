@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, User } from "lucide-react";
 
+import { useInitialLoadReady } from "@/components/layout/initial-image-loader";
 import { useLocale } from "@/components/locale-context";
 import { ParallaxAvatar } from "@/components/parallax-avatar";
 
@@ -21,6 +22,7 @@ const heroIntro = {
 
 export function HomeHero() {
   const { locale } = useLocale();
+  const isInitialLoadReady = useInitialLoadReady();
 
   return (
     <section
@@ -30,7 +32,7 @@ export function HomeHero() {
       <div className="relative mx-auto flex min-h-[calc(100svh-10rem)] w-full max-w-7xl flex-col items-center justify-center gap-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInitialLoadReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-wrap items-center justify-center gap-2"
         >
@@ -47,7 +49,7 @@ export function HomeHero() {
         <section className="grid w-full items-center gap-8 lg:grid-cols-[1fr_minmax(300px,440px)_1fr]">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInitialLoadReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
             transition={{ duration: 0.68, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-5 text-center transition-colors lg:text-right"
           >
@@ -59,18 +61,25 @@ export function HomeHero() {
             </h1>
           </motion.div>
 
-          <ParallaxAvatar
-            src="/images/avatars/tennis.png"
-            alt="Peter Nam tennis avatar"
-            priority
-            initialDelay={0.2}
-            entrance="hero"
-            className="mx-auto w-full max-w-[360px] cursor-default sm:max-w-[420px]"
-          />
+          {isInitialLoadReady ? (
+            <ParallaxAvatar
+              src="/images/avatars/tennis.png"
+              alt="Peter Nam tennis avatar"
+              priority
+              initialDelay={0.2}
+              entrance="hero"
+              className="mx-auto w-full max-w-[360px] cursor-default sm:max-w-[420px]"
+            />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="mx-auto aspect-[2/3] w-full max-w-[360px] sm:max-w-[420px]"
+            />
+          )}
 
           <motion.div
             initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={isInitialLoadReady ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
             transition={{ duration: 0.68, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6 text-center lg:text-left"
           >

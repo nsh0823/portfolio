@@ -115,9 +115,10 @@ const skillsCopy = {
 
 type SkillsSectionProps = {
   id?: string;
+  avatarPriority?: boolean;
 };
 
-export function SkillsSection({ id = "skills" }: SkillsSectionProps) {
+export function SkillsSection({ id = "skills", avatarPriority = true }: SkillsSectionProps) {
   const { locale } = useLocale();
 
   return (
@@ -196,7 +197,7 @@ export function SkillsSection({ id = "skills" }: SkillsSectionProps) {
           <ParallaxAvatar
             src="/images/avatars/programming.png"
             alt="Peter Nam programming avatar"
-            priority
+            priority={avatarPriority}
             className="mx-auto w-full max-w-sm lg:max-w-md"
           />
           <ScrollReveal className="mt-4 rounded-lg border border-black/10 bg-white/78 p-5 shadow-[0_14px_34px_rgba(15,23,42,0.08)] transition-colors dark:border-white/12 dark:bg-white/8 dark:shadow-[0_14px_34px_rgba(0,0,0,0.22)]">

@@ -64,8 +64,8 @@ export function PortfolioScrollPage() {
       <div className="relative z-10">
         <HomeHero />
         <ProjectsShowcase />
-        <AboutSection />
-        <SkillsSection />
+        <AboutSection avatarPriority={false} />
+        <SkillsSection avatarPriority={false} />
         <footer className="px-5 pb-8 pt-4 text-center text-sm leading-6 text-black/50 transition-colors dark:text-white/48 sm:px-8 lg:px-12">
           Design inspired by{" "}
           <a
