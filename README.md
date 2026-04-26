@@ -1,22 +1,56 @@
+
 # Portfolio
 
-The living home for my work, experiments, and interface details as this site takes shape.
+<p align="center">
+  <img width="300" height="auto" alt="ChatGPT Image 2026년 4월 27일 오전 12_46_18" src="https://github.com/user-attachments/assets/a70a316d-562d-452f-a77d-3a054ddf7552" />
+  <div align="center">The living home for my work, experiments, and interface details as this site takes shape.</div>
+</p>
 
-## Card Snapshot
 
-- Label: Portfolio
-- Project index: 01
-- Signature: portfolio
-- Repository: https://github.com/nsh0823/portfolio
-- Preview image: `/images/screenshots/portfolio_screenshot.png`
+#
+
+## Screenshots
+
+<table>
+  <tr align="center">
+    <td>
+      <img alt="portfolio_home" src="https://github.com/user-attachments/assets/68a9bd83-f854-4e59-b87e-fdd463bae664" />
+    </td>
+    <td>
+      <img alt="portfolio_projects" src="https://github.com/user-attachments/assets/f490b7a9-80c0-4cc7-a962-21607e389f75" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">Home: The interactive landing section with motion and avatar artwork.</td>
+    <td align="center">Projects: The projects section with parallax cards and modal case studies.</td>
+  </tr>
+  <tr align="center">
+    <td>
+      <img alt="portfolio_about" src="https://github.com/user-attachments/assets/92b91165-00b7-426d-81ea-b9515812ee5c" />
+    </td>
+    <td>
+      <img alt="portfolio_skills" src="https://github.com/user-attachments/assets/4d6a7a75-31e2-492e-a27f-073b625821dc" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">About: The personal background section with scroll-revealed content.</td>
+    <td align="center">Skills: The skills section organized around the technologies I use.</td>
+  </tr>
+</table>
+
+<br />
 
 ## Overview
 
 A personal portfolio focused on presenting selected work through tactile motion, project case studies, and a polished interface system. I wanted the site to feel interactive and user friendly while challenging myself with newer tools such as Next.js and Framer Motion.
 
+<br />
+
 ## My Role
 
 I designed and built the portfolio experience end to end, including the project cards, responsive layout, motion interactions, and project detail flow. The visual direction was inspired by Toss Impact, I used ChatGPT to create the avatar version of myself, and I used Codex for coding assistance while building the site.
+
+<br />
 
 ## Main Features
 
@@ -26,16 +60,19 @@ I designed and built the portfolio experience end to end, including the project 
 - Generated personal avatar artwork created with ChatGPT for a more distinctive portfolio identity.
 - Toss Impact-inspired visual language adapted into a custom portfolio experience.
 
+<br />
+
 ## Tech Stack
 
-Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Vercel
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-## Screenshots
+<br />
 
-- Home: The interactive landing section with motion and avatar artwork.
-- Projects: The projects section with parallax cards and modal case studies.
-- About: The personal background section with scroll-revealed content.
-- Skills: The skills section organized around the technologies I use.
 
 ## Project Structure
 
@@ -51,11 +88,17 @@ src/lib/                  General utilities
 public/images/            Static portfolio imagery
 ```
 
-Project case-study content lives in `src/data/projects.ts`. Section presentation lives separately under `src/components/sections`, so content changes do not need to touch rendering logic.
+> [!NOTE]
+> Project case-study content lives in `src/data/projects.ts`. Section presentation lives separately under `src/components/sections`, so content changes do not need to touch rendering logic.
+
+
+<br />
 
 ## Deploy
 
 The project can be deployed on Vercel using the default Next.js settings.
+
+<br />
 
 ## Getting Started
 
