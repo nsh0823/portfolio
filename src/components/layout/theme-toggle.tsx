@@ -2,7 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 
-import { useTheme, type Theme } from "@/components/use-theme";
+import { useTheme, type Theme } from "@/hooks/use-theme";
 
 const storageKey = "portfolio-theme";
 

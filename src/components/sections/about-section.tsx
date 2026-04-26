@@ -4,6 +4,7 @@ import {
   BriefcaseBusiness,
   CircleDot,
   Coffee,
+  FileDown,
   Dumbbell,
   GraduationCap,
   Languages,
@@ -94,8 +95,8 @@ const aboutCopy = {
       kr: "제가 코딩에서 가장 좋아하는 부분은 문제를 해결하는 과정입니다. 복잡한 퍼즐을 맞추는 것처럼 느껴지고, 마지막 조각이 딱 들어맞는 순간이 계속 도전하게 만드는 원동력입니다.",
     },
     {
-      en: "Before focusing fully on web development, I worked for about three years at DataSpring Korea as a survey programmer and automation specialist. That experience shaped how I think about software: a good tool should remove repetitive work, reduce errors, and make the next decision clearer.",
-      kr: "웹 개발에 집중하기 전에는 DataSpring Korea에서 약 3년간 설문 프로그래머이자 자동화 담당자로 일했습니다. 그 경험은 좋은 도구란 반복 업무를 줄이고, 오류를 낮추며, 다음 결정을 더 명확하게 만들어야 한다는 소프트웨어에 대한 관점을 만들어 주었습니다.",
+      en: "Before focusing fully on web development, I worked for about three years at dataSpring Korea as a survey programmer and automation specialist. That experience shaped how I think about software: a good tool should remove repetitive work, reduce errors, and make the next decision clearer.",
+      kr: "웹 개발에 집중하기 전에는 dataSpring Korea에서 약 3년간 설문 프로그래머이자 자동화 담당자로 일했습니다. 그 경험은 좋은 도구란 반복 업무를 줄이고, 오류를 낮추며, 다음 결정을 더 명확하게 만들어야 한다는 소프트웨어에 대한 관점을 만들어 주었습니다.",
     },
     {
       en: "I approach challenges with a positive mindset and a determined attitude. I like learning new domains, working through ambiguity, and staying with a problem until the result is useful.",
@@ -126,16 +127,29 @@ export function AboutSection({ id = "about" }: AboutSectionProps) {
             imageClassName="lg:max-h-[calc(100svh-18rem)]"
           />
           <ScrollReveal className="mt-4 rounded-lg border border-black/10 bg-white/78 p-5 shadow-[0_14px_34px_rgba(15,23,42,0.08)] transition-colors dark:border-white/12 dark:bg-white/8 dark:shadow-[0_14px_34px_rgba(0,0,0,0.22)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/48">
-              Full-stack developer
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold leading-tight text-black dark:text-white">
-              Peter Nam
-            </h2>
-            <p className="mt-3 flex items-center gap-2 text-sm text-black/58 dark:text-white/62">
-              <MapPin className="size-4" />
-              Seoul, South Korea
-            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/48">
+                  Full-stack developer
+                </p>
+                <h2 className="mt-2 text-3xl font-semibold leading-tight text-black dark:text-white">
+                  Peter Nam
+                </h2>
+                <p className="mt-3 flex items-center gap-2 text-sm text-black/58 dark:text-white/62">
+                  <MapPin className="size-4" />
+                  Seoul, South Korea
+                </p>
+              </div>
+              <a
+                href="/Peter_Nam_Resume.pdf"
+                download="Peter_Nam_Resume.pdf"
+                aria-label="Download Peter Nam resume"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-black/10 bg-black px-4 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 hover:bg-black/82 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30 dark:border-white/12 dark:bg-white dark:text-slate-950 dark:hover:bg-white/86 dark:focus-visible:ring-white/30"
+              >
+                <FileDown className="size-5" />
+                Resume
+              </a>
+            </div>
           </ScrollReveal>
         </aside>
 

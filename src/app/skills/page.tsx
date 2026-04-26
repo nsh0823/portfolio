@@ -1,4 +1,4 @@
-import { SkillsSection } from "@/components/skills-section";
+import { SkillsSection } from "@/components/sections/skills-section";
 
 export default function SkillsPage() {
   return (

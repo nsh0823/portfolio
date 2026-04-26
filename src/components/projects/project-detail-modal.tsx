@@ -12,32 +12,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export type ProjectDetail = {
-  title: string;
-  description: string;
-  href: string;
-  repositoryHref: string;
-  label: string;
-  accent: string;
-  secondary: string;
-  index: string;
-  signature: string;
-  cardImage?: string;
-  local?: boolean;
-  demoAccount?: {
-    email: string;
-    password: string;
-  };
-  overview: string;
-  role: string;
-  features: string[];
-  stack: string[];
-  screenshots: {
-    title: string;
-    caption: string;
-    src?: string;
-  }[];
-};
+import type { ProjectDetail } from "@/data/projects";
 
 type ProjectDetailModalProps = {
   project: ProjectDetail | null;

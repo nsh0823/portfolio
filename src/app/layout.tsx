@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { LanguageToggle } from "@/components/language-toggle";
+import { LanguageToggle } from "@/components/layout/language-toggle";
 import { LocaleProvider } from "@/components/locale-context";
-import { SiteNavigation } from "@/components/site-navigation";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteNavigation } from "@/components/layout/site-navigation";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,8 +24,10 @@ export default function RootLayout({
               (() => {
                 try {
                   const theme = localStorage.getItem("portfolio-theme");
+                  const locale = localStorage.getItem("portfolio-locale");
                   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
                   document.documentElement.classList.toggle("dark", theme ? theme === "dark" : prefersDark);
+                  document.documentElement.lang = locale === "kr" ? "ko" : "en";
                 } catch {}
               })();
             `,

@@ -1,4 +1,4 @@
-import { ProjectsShowcase } from "@/components/projects-showcase";
+import { ProjectsShowcase } from "@/components/sections/projects-showcase";
 
 export default function ProjectsPage() {
   return (

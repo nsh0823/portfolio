@@ -8,11 +8,11 @@ import {
   useSpring,
 } from "framer-motion";
 
-import { AboutSection } from "@/components/about-section";
-import { HomeHero } from "@/components/home-hero";
-import { ProjectsShowcase } from "@/components/projects-showcase";
-import { SkillsSection } from "@/components/skills-section";
-import { useTheme } from "@/components/use-theme";
+import { useTheme } from "@/hooks/use-theme";
+import { AboutSection } from "@/components/sections/about-section";
+import { HomeHero } from "@/components/sections/home-hero";
+import { ProjectsShowcase } from "@/components/sections/projects-showcase";
+import { SkillsSection } from "@/components/sections/skills-section";
 
 export function PortfolioScrollPage() {
   const shouldReduceMotion = useReducedMotion();

@@ -16,7 +16,7 @@ const descriptors = [
 
 const heroIntro = {
   en: "I build seamless web experiences, practical internal tools, and automation that turns repetitive work into simpler workflows.",
-  kr: "매끄러운 웹 경험, 실용적인 내부 도구, 반복 업무를 더 단순한 흐름으로 바꾸는 자동화를 만듭니다.",
+  kr: "매끄러운 웹 경험과 실용적인 내부 툴을 구축하며, 자동화를 통해 반복적인 업무를 간결한 워크플로우로 변화시킵니다.",
 };
 
 export function HomeHero() {
