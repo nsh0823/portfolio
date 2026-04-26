@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LanguageToggle } from "@/components/layout/language-toggle";
+import { InitialImageLoader } from "@/components/layout/initial-image-loader";
 import { LocaleProvider } from "@/components/locale-context";
 import { SiteNavigation } from "@/components/layout/site-navigation";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -33,12 +34,14 @@ export default function RootLayout({
             `,
           }}
         />
-        <LocaleProvider>
-          <SiteNavigation />
-          <LanguageToggle />
-          {children}
-          <ThemeToggle />
-        </LocaleProvider>
+        <InitialImageLoader>
+          <LocaleProvider>
+            <SiteNavigation />
+            <LanguageToggle />
+            {children}
+            <ThemeToggle />
+          </LocaleProvider>
+        </InitialImageLoader>
       </body>
     </html>
   );
