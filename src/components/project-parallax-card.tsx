@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
 import {
   motion,
   useMotionTemplate,
@@ -22,6 +21,7 @@ type ProjectParallaxCardProps = {
   signature: string;
   cardImage?: string;
   local?: boolean;
+  revealDelay?: number;
   onActiveChange?: (active: boolean) => void;
   onOpen?: () => void;
 };
@@ -33,8 +33,8 @@ export function ProjectParallaxCard({
   accent,
   secondary,
   index,
-  signature,
   cardImage,
+  revealDelay = 0,
   onActiveChange,
   onOpen,
 }: ProjectParallaxCardProps) {
@@ -83,11 +83,13 @@ export function ProjectParallaxCard({
       onPointerEnter={() => onActiveChange?.(true)}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
-      initial={{ opacity: 0, y: 22 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.48, ease: "easeOut" }}
+      initial={{ y: 22 }}
+      animate={{ opacity: 1 }}
+      whileInView={{ y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
+      transition={{ duration: 0.48, delay: revealDelay, ease: "easeOut" }}
       whileHover={shouldReduceMotion ? undefined : { y: -6 }}
-      className="group relative block cursor-pointer text-left focus-visible:outline-none"
+      className="group relative block w-full cursor-pointer text-left focus-visible:outline-none"
       style={{ perspective: 1000 }}
     >
       <div
@@ -98,7 +100,7 @@ export function ProjectParallaxCard({
         }}
       />
       <motion.article
-        className="relative min-h-[430px] overflow-hidden rounded-[22px] bg-white shadow-[0_16px_38px_rgba(15,23,42,0.14)] transition-shadow duration-300 group-hover:shadow-[0_26px_70px_rgba(15,23,42,0.22)] group-focus-visible:ring-3 group-focus-visible:ring-ring/40 sm:min-h-[480px]"
+        className="relative min-h-[430px] overflow-hidden rounded-[22px] bg-white shadow-[0_16px_38px_rgba(15,23,42,0.14)] transition-shadow duration-300 group-hover:shadow-[0_26px_70px_rgba(15,23,42,0.22)] group-focus-visible:ring-3 group-focus-visible:ring-ring/40 dark:bg-slate-950 dark:shadow-[0_16px_38px_rgba(0,0,0,0.34)] dark:group-hover:shadow-[0_26px_70px_rgba(0,0,0,0.46)] sm:min-h-[480px]"
         style={{
           rotateX: shouldReduceMotion ? 0 : rotateX,
           rotateY: shouldReduceMotion ? 0 : rotateY,
@@ -196,31 +198,24 @@ export function ProjectParallaxCard({
         </div>
 
         <div
-          className="absolute inset-x-0 bottom-0 z-10 flex h-[55%] flex-col bg-white px-7 py-7"
+          className="absolute inset-x-0 bottom-0 z-10 flex h-[55%] flex-col bg-white px-7 py-7 transition-colors dark:bg-slate-950"
           style={{ transform: "translateZ(58px)" }}
         >
-          <div className="flex items-center justify-between gap-3 text-xs font-semibold text-black/38 sm:text-sm">
+          <div className="flex items-center justify-between gap-3 text-xs font-semibold text-black/38 dark:text-white/42 sm:text-sm">
             <span>{label}</span>
             <span>{index}</span>
           </div>
 
           <div className="mt-8 space-y-4">
-            <p className="text-lg font-semibold leading-none text-black/38">
+            <p className="text-lg font-semibold leading-none text-black/38 dark:text-white/42">
               Project {index}
             </p>
-            <h2 className="text-2xl font-bold leading-tight text-[#202731] sm:text-[1.7rem]">
+            <h2 className="text-2xl font-bold leading-tight text-[#202731] dark:text-white sm:text-[1.7rem]">
               {title}
             </h2>
-            <p className="line-clamp-3 max-w-sm text-sm leading-6 text-black/58">
+            <p className="line-clamp-3 max-w-sm text-sm leading-6 text-black/58 dark:text-white/62">
               {description}
             </p>
-          </div>
-
-          <div className="mt-auto flex items-center justify-between pt-6">
-            <span className="text-xl font-extrabold tracking-tight text-[#202731]">
-              {signature}
-            </span>
-            <ExternalLink className="size-4 text-black/34 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
         </div>
       </motion.article>

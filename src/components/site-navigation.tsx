@@ -3,15 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { FolderKanban, Home, Mail, Sparkles, User } from "lucide-react";
-import { useRef, useState } from "react";
+import { FolderKanban, Home, Sparkles, User } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const navItems = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "About", href: "/about", icon: User },
-  { label: "Projects", href: "/projects", icon: FolderKanban },
-  { label: "Skills", href: "/#skills", icon: Sparkles },
-  { label: "Contact", href: "/#contact", icon: Mail },
+  { label: "Home", href: "/", icon: Home, section: "home" },
+  {
+    label: "Projects",
+    href: "/#projects",
+    icon: FolderKanban,
+    section: "projects",
+  },
+  { label: "About", href: "/#about", icon: User, section: "about" },
+  { label: "Skills", href: "/#skills", icon: Sparkles, section: "skills" },
 ];
 
 const smoothTransition = {
@@ -28,7 +32,59 @@ export function SiteNavigation() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isCondensed, setIsCondensed] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const condensedRef = useRef(false);
+  const currentActiveSection =
+    pathname === "/" ? activeSection : pathname.replace("/", "") || "home";
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
+    let animationFrame = 0;
+
+    const updateActiveSection = () => {
+      const probeY = window.innerHeight * 0.38;
+      let currentSection = "home";
+
+      for (const item of navItems) {
+        const section = document.getElementById(item.section);
+
+        if (!section) {
+          continue;
+        }
+
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= probeY && rect.bottom > probeY) {
+          currentSection = item.section;
+          break;
+        }
+
+        if (rect.top <= probeY) {
+          currentSection = item.section;
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    const handleScroll = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const shouldCondense = condensedRef.current ? latest > 36 : latest > 96;
@@ -89,9 +145,9 @@ export function SiteNavigation() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : item.href.startsWith(pathname) && pathname !== "/";
+              pathname === "/"
+                ? currentActiveSection === item.section
+                : pathname === `/${item.section}`;
 
             return (
               <motion.li
@@ -137,6 +193,7 @@ export function SiteNavigation() {
                   </motion.span>
                   <motion.span
                     className="relative z-10 inline-block overflow-hidden whitespace-nowrap"
+                    initial={false}
                     animate={{
                       maxWidth: isCondensed ? 0 : 72,
                       marginLeft: isCondensed ? 0 : -4,

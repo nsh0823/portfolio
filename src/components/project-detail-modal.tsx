@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -82,11 +83,11 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
     setActiveSlide((current) => (current + 1) % slideCount);
   };
 
-  return (
+  const modal = (
     <AnimatePresence>
       {project ? (
         <motion.div
-          className="fixed inset-0 z-[80] overflow-hidden bg-black/42 px-4 py-6 backdrop-blur-xl sm:px-6"
+          className="fixed inset-0 z-[100] overflow-hidden bg-black/42 px-4 py-6 backdrop-blur-xl sm:px-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -96,7 +97,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             role="dialog"
             aria-modal="true"
             aria-labelledby="project-detail-title"
-            className="relative mx-auto grid h-[calc(100svh-48px)] w-full max-w-6xl grid-rows-[minmax(300px,42%)_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_100px_rgba(3,7,18,0.35)] lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none"
+            className="relative mx-auto grid h-[calc(100svh-48px)] w-full max-w-6xl grid-rows-[minmax(300px,42%)_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_100px_rgba(3,7,18,0.35)] transition-colors dark:bg-slate-950 lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-none"
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.97 }}
@@ -107,7 +108,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               type="button"
               aria-label="Close project details"
               onClick={onClose}
-              className="absolute right-4 top-4 z-30 grid size-9 place-items-center rounded-full bg-white/82 text-black/68 shadow-sm backdrop-blur transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20"
+              className="absolute right-4 top-4 z-30 grid size-9 cursor-pointer place-items-center rounded-full bg-white/82 text-black/68 shadow-sm backdrop-blur transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:bg-slate-950/78 dark:text-white/72 dark:hover:bg-slate-900 dark:hover:text-white dark:focus-visible:ring-white/24"
             >
               <X className="size-4" />
             </button>
@@ -218,7 +219,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                     type="button"
                     aria-label="Previous screenshot"
                     onClick={showPrevious}
-                    className="grid size-10 place-items-center rounded-full bg-white/24 text-white shadow-sm backdrop-blur transition hover:bg-white/34 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    className="grid size-10 cursor-pointer place-items-center rounded-full bg-white/24 text-white shadow-sm backdrop-blur transition hover:bg-white/34 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
                     <ChevronLeft className="size-5" />
                   </button>
@@ -229,7 +230,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                     type="button"
                     aria-label="Next screenshot"
                     onClick={showNext}
-                    className="grid size-10 place-items-center rounded-full bg-white/24 text-white shadow-sm backdrop-blur transition hover:bg-white/34 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    className="grid size-10 cursor-pointer place-items-center rounded-full bg-white/24 text-white shadow-sm backdrop-blur transition hover:bg-white/34 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
                     <ChevronRight className="size-5" />
                   </button>
@@ -239,35 +240,37 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
             <div className="min-h-0 overflow-y-auto px-6 py-8 sm:px-8 lg:px-10 lg:py-12">
               <div className="space-y-4 pr-10">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/42">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/42 dark:text-white/48">
                   {project.signature}
                 </p>
                 <h2
                   id="project-detail-title"
-                  className="text-4xl font-bold leading-tight text-[#202731] sm:text-5xl"
+                  className="text-4xl font-bold leading-tight text-[#202731] dark:text-white sm:text-5xl"
                 >
                   {project.title}
                 </h2>
-                <p className="text-base leading-7 text-black/58">
+                <p className="text-base leading-7 text-black/58 dark:text-white/64">
                   {project.overview}
                 </p>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={project.href}
-                  target={project.local ? undefined : "_blank"}
-                  rel={project.local ? undefined : "noreferrer"}
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#202731] px-4 text-sm font-semibold text-white transition hover:bg-black"
-                >
-                  Visit website
-                  <ExternalLink className="size-4" />
-                </a>
+                {project.local ? null : (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#202731] px-4 text-sm font-semibold text-white transition hover:bg-black dark:bg-white dark:text-slate-950 dark:hover:bg-white/88"
+                  >
+                    Visit website
+                    <ExternalLink className="size-4" />
+                  </a>
+                )}
                 <a
                   href={project.repositoryHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-black/68 transition hover:bg-black/[0.04]"
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-black/68 transition hover:bg-black/[0.04] dark:border-white/12 dark:bg-white/8 dark:text-white/72 dark:hover:bg-white/12"
                 >
                   Project repository
                   <GitBranch className="size-4" />
@@ -275,20 +278,20 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               </div>
 
               {project.demoAccount ? (
-                <section className="mt-5 rounded-[10px] border border-black/8 bg-black/[0.025] px-4 py-3">
-                  <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-black/42">
+                <section className="mt-5 rounded-[10px] border border-black/8 bg-black/[0.025] px-4 py-3 dark:border-white/10 dark:bg-white/[0.04]">
+                  <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
                     Demo account
                   </h3>
-                  <div className="mt-2 grid gap-1.5 text-sm leading-6 text-black/64">
+                  <div className="mt-2 grid gap-1.5 text-sm leading-6 text-black/64 dark:text-white/66">
                     <p>
-                      <span className="font-semibold text-black/54">Email:</span>{" "}
-                      <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68">
+                      <span className="font-semibold text-black/54 dark:text-white/60">Email:</span>{" "}
+                      <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68 dark:bg-white/10 dark:text-white/72">
                         {project.demoAccount.email}
                       </code>
                     </p>
                     <p>
-                      <span className="font-semibold text-black/54">Password:</span>{" "}
-                      <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68">
+                      <span className="font-semibold text-black/54 dark:text-white/60">Password:</span>{" "}
+                      <code className="rounded bg-white px-1.5 py-0.5 text-xs text-black/68 dark:bg-white/10 dark:text-white/72">
                         {project.demoAccount.password}
                       </code>
                     </p>
@@ -297,21 +300,21 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               ) : null}
 
               <section className="mt-8 space-y-3">
-                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42">
+                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
                   My role
                 </h3>
-                <p className="text-sm leading-7 text-black/64">{project.role}</p>
+                <p className="text-sm leading-7 text-black/64 dark:text-white/66">{project.role}</p>
               </section>
 
               <section className="mt-8 space-y-3">
-                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42">
+                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
                   Main features
                 </h3>
                 <ul className="grid gap-2">
                   {project.features.map((feature) => (
                     <li
                       key={feature}
-                      className="rounded-[8px] border border-black/8 bg-black/[0.025] px-3 py-2 text-sm leading-6 text-black/64"
+                      className="rounded-[8px] border border-black/8 bg-black/[0.025] px-3 py-2 text-sm leading-6 text-black/64 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/66"
                     >
                       {feature}
                     </li>
@@ -320,14 +323,14 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               </section>
 
               <section className="mt-8 space-y-3">
-                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42">
+                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
                   Tech stack
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.stack.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-black/8 bg-white px-3 py-1.5 text-xs font-semibold text-black/58 shadow-sm"
+                      className="rounded-full border border-black/8 bg-white px-3 py-1.5 text-xs font-semibold text-black/58 shadow-sm dark:border-white/10 dark:bg-white/8 dark:text-white/62"
                     >
                       {item}
                     </span>
@@ -340,4 +343,10 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
       ) : null}
     </AnimatePresence>
   );
+
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  return createPortal(modal, document.body);
 }

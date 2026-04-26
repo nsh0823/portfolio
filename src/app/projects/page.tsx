@@ -1,5 +1,9 @@
 import { ProjectsShowcase } from "@/components/projects-showcase";
 
 export default function ProjectsPage() {
-  return <ProjectsShowcase />;
+  return (
+    <main className="portfolio-surface">
+      <ProjectsShowcase />
+    </main>
+  );
 }
