@@ -129,6 +129,7 @@
   html {
     @apply scroll-smooth font-sans;
   }
+  html:lang(ko),
   html:lang(ko) body {
     word-break: keep-all;
     word-wrap: break-word;
