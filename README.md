@@ -4,6 +4,9 @@
 <p align="center">
   <img width="300" height="auto" alt="ChatGPT Image 2026년 4월 27일 오전 12_46_18" src="https://github.com/user-attachments/assets/a70a316d-562d-452f-a77d-3a054ddf7552" />
   <div align="center">The living home for my work, experiences, and skills.</div>
+  <div align="center">
+    <a href="https://www.peternam.site" target="_blank">Visit my portfolio</a>
+  </div>
 </p>
 
 
