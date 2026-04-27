@@ -3,7 +3,7 @@
 
 <p align="center">
   <img width="300" height="auto" alt="ChatGPT Image 2026년 4월 27일 오전 12_46_18" src="https://github.com/user-attachments/assets/a70a316d-562d-452f-a77d-3a054ddf7552" />
-  <div align="center">The living home for my work, experiments, and interface details as this site takes shape.</div>
+  <div align="center">The living home for my work, experiences, and skills.</div>
 </p>
 
 
@@ -14,7 +14,7 @@
 <table>
   <tr align="center">
     <td>
-      <img alt="portfolio_home" src="https://github.com/user-attachments/assets/68a9bd83-f854-4e59-b87e-fdd463bae664" />
+      <img width="1695" height="986" alt="portfolio_home" src="https://github.com/user-attachments/assets/959b0b34-b2ea-4363-8a6e-6fb9f67c58e1" />
     </td>
     <td>
       <img alt="portfolio_projects" src="https://github.com/user-attachments/assets/f490b7a9-80c0-4cc7-a962-21607e389f75" />
@@ -37,6 +37,13 @@
     <td align="center">Skills: The skills section organized around the technologies I use.</td>
   </tr>
 </table>
+
+
+
+
+https://github.com/user-attachments/assets/7038f348-6b4a-44f5-afb1-9d088c4e04f1
+
+
 
 <br />
 
