@@ -5,12 +5,26 @@
   <img width="300" height="auto" alt="ChatGPT Image 2026년 4월 27일 오전 12_46_18" src="https://github.com/user-attachments/assets/a70a316d-562d-452f-a77d-3a054ddf7552" />
   <div align="center">The living home for my work, experiences, and skills.</div>
   <div align="center">
-    <a href="https://www.peternam.site" target="_blank">Visit my portfolio</a>
+    <a href="https://www.peternam.site" target="_blank">
+      <img src="https://custom-icon-badges.demolab.com/badge/Visit%20Portfolio-64a673.svg?logo=link-external&logoColor=white" />
+    </a>
   </div>
 </p>
 
 
 #
+
+## Overview
+
+A personal portfolio focused on presenting selected work through tactile motion, project case studies, and a polished interface system. I wanted the site to feel interactive and user friendly while challenging myself with newer tools such as Next.js and Framer Motion.
+
+<br />
+
+## My Role
+
+I designed and built the portfolio experience end to end, including the project cards, responsive layout, motion interactions, and project detail flow. The visual direction was inspired by Toss Impact, I used ChatGPT to create the avatar version of myself, and I used Codex for coding assistance while building the site.
+
+<br />
 
 ## Screenshots/Demo
 
@@ -39,18 +53,6 @@
 https://github.com/user-attachments/assets/7038f348-6b4a-44f5-afb1-9d088c4e04f1
 
 
-
-<br />
-
-## Overview
-
-A personal portfolio focused on presenting selected work through tactile motion, project case studies, and a polished interface system. I wanted the site to feel interactive and user friendly while challenging myself with newer tools such as Next.js and Framer Motion.
-
-<br />
-
-## My Role
-
-I designed and built the portfolio experience end to end, including the project cards, responsive layout, motion interactions, and project detail flow. The visual direction was inspired by Toss Impact, I used ChatGPT to create the avatar version of myself, and I used Codex for coding assistance while building the site.
 
 <br />
 
