@@ -95,7 +95,7 @@ export const baseProjects: ProjectDetail[] = [
     index: "02",
     signature: "funda",
     cardImage: "/images/screenshots/funda_screenshot.png",
-    repositoryHref: "https://github.com/boostcampwm2025/web21-funda",
+    repositoryHref: "https://github.com/nsh0823/funda",
     overview:
       "Funda is a gamified learning platform for computer science study. It guides learners through a Field, Unit, Step, and Quiz roadmap, then reinforces growth with spaced review, weekly tiers, personal dashboards, AI tutoring, and Socket.io-based real-time quiz battles.",
     role:
