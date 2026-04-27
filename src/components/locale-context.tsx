@@ -25,11 +25,11 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 function getStoredLocale(): Locale {
   if (typeof window === "undefined") {
-    return "en";
+    return "kr";
   }
 
   const storedLocale = localStorage.getItem(storageKey);
-  return storedLocale === "kr" || storedLocale === "en" ? storedLocale : "en";
+  return storedLocale === "kr" || storedLocale === "en" ? storedLocale : "kr";
 }
 
 function subscribeToLocale(callback: () => void) {
@@ -43,7 +43,7 @@ function subscribeToLocale(callback: () => void) {
 }
 
 function getDefaultLocale(): Locale {
-  return "en";
+  return "kr";
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
