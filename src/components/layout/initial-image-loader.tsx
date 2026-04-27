@@ -211,8 +211,8 @@ export function InitialImageLoader({ children }: InitialImageLoaderProps) {
                 <Image
                   src="/logo_portfolio.png"
                   alt="Peter Nam portfolio logo"
-                  width={118}
-                  height={118}
+                  width={490}
+                  height={568}
                   priority
                   unoptimized
                   className="h-auto w-[118px] drop-shadow-[0_18px_34px_rgba(15,23,42,0.18)] dark:drop-shadow-[0_18px_34px_rgba(0,0,0,0.42)]"
