@@ -12,28 +12,20 @@
 
 #
 
-## Screenshots
+## Screenshots/Demo
 
 <table>
   <tr align="center">
-    <td>
-      <img alt="portfolio_home" src="https://github.com/user-attachments/assets/959b0b34-b2ea-4363-8a6e-6fb9f67c58e1" />
-    </td>
-    <td>
-      <img alt="portfolio_projects" src="https://github.com/user-attachments/assets/f490b7a9-80c0-4cc7-a962-21607e389f75" />
-    </td>
+    <td><img alt="port_home" src="https://github.com/user-attachments/assets/f0db1986-6e61-423d-a9bc-87f64d3c92d1" /></td>
+    <td><img alt="port_proj" src="https://github.com/user-attachments/assets/59ac5404-0339-4ab7-b9cb-ece1b957cd91" /></td>
   </tr>
   <tr>
     <td align="center">Home: The interactive landing section with motion and avatar artwork.</td>
     <td align="center">Projects: The projects section with parallax cards and modal case studies.</td>
   </tr>
   <tr align="center">
-    <td>
-      <img alt="portfolio_about" src="https://github.com/user-attachments/assets/92b91165-00b7-426d-81ea-b9515812ee5c" />
-    </td>
-    <td>
-      <img alt="portfolio_skills" src="https://github.com/user-attachments/assets/4d6a7a75-31e2-492e-a27f-073b625821dc" />
-    </td>
+    <td><img alt="port_about" src="https://github.com/user-attachments/assets/6f0eae28-367c-4b7e-9cb7-b1802da8c43f" /></td>
+    <td><img alt="port_skills" src="https://github.com/user-attachments/assets/0cf65ae2-aed3-4e43-bfbe-b97733362501" /></td>
   </tr>
   <tr>
     <td align="center">About: The personal background section with scroll-revealed content.</td>
