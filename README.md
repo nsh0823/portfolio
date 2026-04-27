@@ -14,7 +14,7 @@
 <table>
   <tr align="center">
     <td>
-      <img width="1695" height="986" alt="portfolio_home" src="https://github.com/user-attachments/assets/959b0b34-b2ea-4363-8a6e-6fb9f67c58e1" />
+      <img alt="portfolio_home" src="https://github.com/user-attachments/assets/959b0b34-b2ea-4363-8a6e-6fb9f67c58e1" />
     </td>
     <td>
       <img alt="portfolio_projects" src="https://github.com/user-attachments/assets/f490b7a9-80c0-4cc7-a962-21607e389f75" />
