@@ -53,7 +53,7 @@ export function ParallaxAvatar({
   const shadowX = useTransform(smoothX, [-1, 1], [18, -18]);
   const shadowY = useTransform(smoothY, [-1, 1], [16, -16]);
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+  const updatePointer = (event: React.PointerEvent<HTMLDivElement>) => {
     if (shouldReduceMotion) {
       return;
     }
@@ -66,18 +66,38 @@ export function ParallaxAvatar({
     pointerY.set(y * 2 - 1);
   };
 
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    updatePointer(event);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    updatePointer(event);
+  };
+
   const resetPointer = () => {
     pointerX.set(0);
     pointerY.set(0);
+  };
+
+  const handlePointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    resetPointer();
   };
 
   const isHeroEntrance = entrance === "hero";
 
   return (
     <motion.div
-      className={`group relative ${className}`}
+      className={`group relative touch-none ${className}`}
+      onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
       initial={
         isHeroEntrance
           ? {

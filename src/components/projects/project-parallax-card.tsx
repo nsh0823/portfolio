@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -41,6 +42,8 @@ export function ProjectParallaxCard({
   const shouldReduceMotion = useReducedMotion();
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const didTouchDragRef = useRef(false);
 
   const smoothX = useSpring(pointerX, { stiffness: 170, damping: 22, mass: 0.35 });
   const smoothY = useSpring(pointerY, { stiffness: 170, damping: 22, mass: 0.35 });
@@ -55,7 +58,7 @@ export function ProjectParallaxCard({
   const glareY = useTransform(smoothY, [-1, 1], [0, 100]);
   const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.44), rgba(255,255,255,0.12) 24%, transparent 54%)`;
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+  const updatePointer = (event: React.PointerEvent<HTMLElement>) => {
     if (shouldReduceMotion) {
       return;
     }
@@ -66,6 +69,31 @@ export function ProjectParallaxCard({
 
     pointerX.set(x * 2 - 1);
     pointerY.set(y * 2 - 1);
+
+    if (event.pointerType === "touch" && touchStartRef.current) {
+      const deltaX = event.clientX - touchStartRef.current.x;
+      const deltaY = event.clientY - touchStartRef.current.y;
+
+      if (Math.hypot(deltaX, deltaY) > 8) {
+        didTouchDragRef.current = true;
+      }
+    }
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLButtonElement>) => {
+    onActiveChange?.(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+
+    if (event.pointerType === "touch") {
+      touchStartRef.current = { x: event.clientX, y: event.clientY };
+      didTouchDragRef.current = false;
+    }
+
+    updatePointer(event);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    updatePointer(event);
   };
 
   const resetPointer = () => {
@@ -74,22 +102,45 @@ export function ProjectParallaxCard({
     onActiveChange?.(false);
   };
 
+  const handlePointerEnd = (event: React.PointerEvent<HTMLButtonElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    touchStartRef.current = null;
+    resetPointer();
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (didTouchDragRef.current) {
+      didTouchDragRef.current = false;
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    onOpen?.();
+  };
+
   return (
     <motion.button
       type="button"
-      onClick={onOpen}
+      onClick={handleClick}
       onFocus={() => onActiveChange?.(true)}
       onBlur={() => onActiveChange?.(false)}
       onPointerEnter={() => onActiveChange?.(true)}
+      onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
+      onPointerUp={handlePointerEnd}
+      onPointerCancel={handlePointerEnd}
       initial={{ y: 22 }}
       animate={{ opacity: 1 }}
       whileInView={{ y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.48, delay: revealDelay, ease: "easeOut" }}
       whileHover={shouldReduceMotion ? undefined : { y: -6 }}
-      className="group relative block w-full cursor-pointer text-left focus-visible:outline-none"
+      className="group relative block w-full touch-pan-y cursor-pointer text-left focus-visible:outline-none"
       style={{ perspective: 1000 }}
     >
       <div
