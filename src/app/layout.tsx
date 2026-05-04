@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HapticFeedback } from "@/components/layout/haptic-feedback";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { InitialImageLoader } from "@/components/layout/initial-image-loader";
 import { LocaleProvider } from "@/components/locale-context";
@@ -36,6 +37,7 @@ export default function RootLayout({
         />
         <InitialImageLoader>
           <LocaleProvider>
+            <HapticFeedback />
             <SiteNavigation />
             <LanguageToggle />
             {children}
