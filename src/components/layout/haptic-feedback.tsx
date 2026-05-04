@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect } from "react";
 
 const interactiveSelector = [
   "a[href]",
@@ -38,26 +38,30 @@ function isIOSLikeDevice() {
   );
 }
 
+function triggerSwitchFallback() {
+  const labelElement = document.createElement("label");
+  const inputElement = document.createElement("input");
+
+  labelElement.ariaHidden = "true";
+  labelElement.style.display = "none";
+
+  inputElement.type = "checkbox";
+  inputElement.setAttribute("switch", "");
+
+  labelElement.appendChild(inputElement);
+  document.head.appendChild(labelElement);
+  labelElement.click();
+  document.head.removeChild(labelElement);
+}
+
 export function HapticFeedback() {
-  const switchId = useId();
-  const labelRef = useRef<HTMLLabelElement>(null);
-  const switchRef = useRef<HTMLInputElement>(null);
-
   useEffect(() => {
-    switchRef.current?.setAttribute("switch", "");
-
-    const triggerSwitchFallback = () => {
-      const labelElement = labelRef.current;
-
-      if (!labelElement) {
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.pointerType !== "touch" && event.pointerType !== "pen") {
         return;
       }
 
-      labelElement.click();
-    };
-
-    const handlePointerDown = (event: PointerEvent) => {
-      if (event.pointerType !== "touch" && event.pointerType !== "pen") {
+      if (isIOSLikeDevice()) {
         return;
       }
 
@@ -68,14 +72,33 @@ export function HapticFeedback() {
         return;
       }
 
-      const didVibrate = navigator.vibrate?.(8) ?? false;
+      navigator.vibrate?.(8);
+    };
 
-      if (!didVibrate && isIOSLikeDevice()) {
+    const handleClick = (event: MouseEvent) => {
+      if (!isIOSLikeDevice()) {
+        return;
+      }
+
+      const target = event.target instanceof Element ? event.target : null;
+      const interactiveElement = target?.closest(interactiveSelector);
+
+      if (!interactiveElement || isDisabled(interactiveElement)) {
+        return;
+      }
+
+      try {
         triggerSwitchFallback();
+      } catch {
+        // Ignore unsupported iOS/WebKit combinations.
       }
     };
 
     document.addEventListener("pointerdown", handlePointerDown, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("click", handleClick, {
       capture: true,
       passive: true,
     });
@@ -84,25 +107,11 @@ export function HapticFeedback() {
       document.removeEventListener("pointerdown", handlePointerDown, {
         capture: true,
       });
+      document.removeEventListener("click", handleClick, {
+        capture: true,
+      });
     };
   }, []);
 
-  return (
-    <label
-      ref={labelRef}
-      htmlFor={switchId}
-      aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 size-px opacity-0"
-      data-haptic="off"
-    >
-      <input
-        ref={switchRef}
-        id={switchId}
-        aria-hidden="true"
-        data-haptic="off"
-        tabIndex={-1}
-        type="checkbox"
-      />
-    </label>
-  );
+  return null;
 }
