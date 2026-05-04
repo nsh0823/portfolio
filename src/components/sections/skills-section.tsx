@@ -134,7 +134,7 @@ export function SkillsSection({ id = "skills", avatarPriority = true }: SkillsSe
                 <Sparkles className="size-4" />
                 Skills
               </p>
-              <h1 className="mt-4 text-5xl font-semibold leading-[0.94] text-black dark:text-white sm:text-6xl lg:text-7xl">
+              <h1 className="mt-4 text-4xl font-semibold leading-[0.94] text-black dark:text-white sm:text-5xl lg:text-6xl">
                 Skills
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-black/64 dark:text-white/68">
