@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 
 const interactiveSelector = [
   "a[href]",
@@ -39,17 +39,21 @@ function isIOSLikeDevice() {
 }
 
 export function HapticFeedback() {
+  const switchId = useId();
+  const labelRef = useRef<HTMLLabelElement>(null);
   const switchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const triggerSwitchFallback = () => {
-      const switchElement = switchRef.current;
+    switchRef.current?.setAttribute("switch", "");
 
-      if (!switchElement) {
+    const triggerSwitchFallback = () => {
+      const labelElement = labelRef.current;
+
+      if (!labelElement) {
         return;
       }
 
-      switchElement.click();
+      labelElement.click();
     };
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -84,14 +88,21 @@ export function HapticFeedback() {
   }, []);
 
   return (
-    <input
-      ref={switchRef}
+    <label
+      ref={labelRef}
+      htmlFor={switchId}
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 size-px opacity-0"
       data-haptic="off"
-      tabIndex={-1}
-      type="checkbox"
-      role="switch"
-    />
+    >
+      <input
+        ref={switchRef}
+        id={switchId}
+        aria-hidden="true"
+        data-haptic="off"
+        tabIndex={-1}
+        type="checkbox"
+      />
+    </label>
   );
 }
