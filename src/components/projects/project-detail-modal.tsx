@@ -243,7 +243,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   </div>
                 </div>
 
-                <div className="relative z-20 mt-3 grid grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-2 sm:mt-8 sm:flex sm:justify-center sm:gap-3">
+                <div className="relative z-20 mx-auto mt-3 grid min-h-10 w-full max-w-[620px] grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-2 sm:mt-8 sm:gap-3">
                   <button
                     type="button"
                     aria-label="Previous screenshot"
@@ -252,7 +252,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   >
                     <ChevronLeft className="size-5" />
                   </button>
-                  <p className="min-w-0 text-center text-xs font-medium leading-5 text-white/82 sm:min-w-44 sm:text-sm">
+                  <p className="line-clamp-2 min-h-10 min-w-0 content-center text-center text-xs font-medium leading-5 text-white/82 sm:text-sm">
                     {project.screenshots[activeSlide]?.caption}
                   </p>
                   <button
