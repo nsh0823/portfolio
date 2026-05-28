@@ -23,13 +23,29 @@ const changeEvent = "portfolio-locale-change";
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
+function getSystemLocale(): Locale {
+  if (typeof navigator === "undefined") {
+    return "en";
+  }
+
+  const languages = navigator.languages?.length
+    ? navigator.languages
+    : [navigator.language];
+
+  return languages.some((language) => language.toLowerCase().startsWith("ko"))
+    ? "kr"
+    : "en";
+}
+
 function getStoredLocale(): Locale {
   if (typeof window === "undefined") {
-    return "kr";
+    return "en";
   }
 
   const storedLocale = localStorage.getItem(storageKey);
-  return storedLocale === "kr" || storedLocale === "en" ? storedLocale : "kr";
+  return storedLocale === "kr" || storedLocale === "en"
+    ? storedLocale
+    : getSystemLocale();
 }
 
 function subscribeToLocale(callback: () => void) {
@@ -43,7 +59,7 @@ function subscribeToLocale(callback: () => void) {
 }
 
 function getDefaultLocale(): Locale {
-  return "kr";
+  return "en";
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
