@@ -108,8 +108,8 @@ const skillsCopy = {
     kr: "사용자 인터페이스, 내부 도구, 자동화 스크립트, 풀스택 웹 애플리케이션을 만들며 다져온 실용적인 기술 스택입니다.",
   },
   workingStyle: {
-    en: "As a quick learner, I adapt to new tools and technologies quickly. I like facing challenges and solving real-world problems with practical solutions.",
-    kr: "빠르게 배우는 편이라 새로운 도구와 기술에 신속하게 적응합니다. 도전을 마주하고 실제 문제를 실용적인 해결책으로 풀어내는 일을 좋아합니다.",
+    en: "I enjoy learning new technologies and tools, quickly applying them to solve problems more efficiently. By actively using AI tools in my development process, I aim to keep growing as a developer who finds better solutions in a constantly evolving tech landscape.",
+    kr: "새로운 기술과 도구를 배우는 데 두려움이 없으며, 이를 빠르게 습득해 문제를 더 효율적인 방향으로 해결하는 것을 즐깁니다. AI 도구를 개발 과정에 적극적으로 활용하며, 변화하는 기술 흐름 속에서 더 나은 해결 방식을 찾아가는 개발자로 성장하고자 합니다.",
   },
 };
 
