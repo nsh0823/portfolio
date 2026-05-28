@@ -314,7 +314,7 @@ export function AboutSection({ id = "about", avatarPriority = true }: AboutSecti
           <ScrollReveal>
             <section className="space-y-4">
               <h2 className="text-2xl font-semibold">Outside of code</h2>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
                 {hobbies.map((hobby) => {
                   const Icon = hobby.icon;
 
