@@ -88,7 +88,7 @@ export const baseProjects: ProjectDetail[] = [
     title: "Funda",
     description:
       "Gamified CS learning with roadmaps, quizzes, review, AI help, and real-time battles.",
-    href: "https://funda.website",
+    href: "https://funda.qzz.io",
     label: "Gamified CS Learning",
     accent: "#6559EA",
     secondary: "#D1CEF9",
