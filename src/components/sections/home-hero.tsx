@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, User } from "lucide-react";
+import { ArrowRight, Mail, User, FolderKanban } from "lucide-react";
 import type { SVGProps } from "react";
 
 import { useInitialLoadReady } from "@/components/layout/initial-image-loader";
@@ -17,8 +17,8 @@ const descriptors = [
 ];
 
 const heroIntro = {
-  en: "I build seamless web experiences, practical internal tools, and automation that turns repetitive work into simpler workflows.",
-  kr: "매끄러운 웹 경험과 실용적인 내부 툴을 구축하며, 자동화를 통해 반복적인 업무를 간결한 워크플로우로 변화시킵니다.",
+  en: "\"Crafting intuitive web experiences with careful attention to every user-facing detail.\"",
+  kr: "\"사용자와 맞닿는 작은 디테일까지 고민하며, 편리하고 직관적인 웹 경험을 만듭니다.\"",
 };
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -92,7 +92,10 @@ export function HomeHero() {
               Seung Hyun Nam
             </p>
             <h1 className="text-5xl font-semibold leading-[0.92] text-black dark:text-white sm:text-6xl lg:text-7xl">
-              Peter<br />Nam
+              {
+                locale === "en" ? <span>Peter<br />Nam</span> : "남승현"
+              }
+              
             </h1>
             <div className="flex justify-center gap-3 lg:justify-end">
               {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -141,6 +144,7 @@ export function HomeHero() {
                 href="#projects"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-black px-5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(15,23,42,0.22)] transition duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/40 dark:bg-white dark:text-slate-950 dark:shadow-[0_14px_30px_rgba(0,0,0,0.34)] dark:focus-visible:ring-white/40"
               >
+                <FolderKanban className="size-4" />
                 Projects
                 <ArrowRight className="size-4" />
               </Link>
