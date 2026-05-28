@@ -54,7 +54,7 @@ export function ParallaxAvatar({
   const shadowY = useTransform(smoothY, [-1, 1], [16, -16]);
 
   const updatePointer = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (shouldReduceMotion) {
+    if (shouldReduceMotion || event.pointerType === "touch") {
       return;
     }
 
@@ -67,11 +67,20 @@ export function ParallaxAvatar({
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") {
+      resetPointer();
+      return;
+    }
+
     event.currentTarget.setPointerCapture(event.pointerId);
     updatePointer(event);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+
     updatePointer(event);
   };
 
@@ -92,7 +101,7 @@ export function ParallaxAvatar({
 
   return (
     <motion.div
-      className={`group relative touch-none ${className}`}
+      className={`group relative touch-pan-y ${className}`}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
