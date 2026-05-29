@@ -68,6 +68,23 @@ const experienceHighlights = [
   },
 ];
 
+const experienceGroups = [
+  {
+    heading: {
+      en: "Work Experience",
+      kr: "실무 경험",
+    },
+    items: [experienceHighlights[0]],
+  },
+  {
+    heading: {
+      en: "Bootcamp",
+      kr: "부트캠프",
+    },
+    items: experienceHighlights.slice(1),
+  },
+];
+
 const education = {
   school: "Furman University",
   degreeLocation: {
@@ -245,29 +262,38 @@ export function AboutSection({ id = "about", avatarPriority = true }: AboutSecti
           <ScrollReveal>
             <section className="space-y-4">
               <h2 className="text-2xl font-semibold">Experience</h2>
-              <div className="grid gap-4">
-                {experienceHighlights.map((item) => (
-                  <article
-                    key={item.title[locale]}
-                    className="rounded-lg border border-black/10 bg-white/78 p-6 shadow-[0_14px_34px_rgba(15,23,42,0.08)] transition-colors dark:border-white/12 dark:bg-white/8 dark:shadow-[0_14px_34px_rgba(0,0,0,0.22)]"
-                  >
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                      <div>
-                        <h3 className="text-lg font-semibold text-black dark:text-white">
-                          {item.title[locale]}
-                        </h3>
-                        <p className="mt-1 text-sm font-medium text-black/46 dark:text-white/50">
-                          {item.subtitle[locale]}
-                        </p>
-                      </div>
-                      <span className="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-black/50 dark:bg-white/10 dark:text-white/56">
-                        {item.period}
-                      </span>
+              <div className="space-y-6">
+                {experienceGroups.map((group) => (
+                  <div key={group.heading.en} className="space-y-3">
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-black/44 dark:text-white/50">
+                      {group.heading[locale]}
+                    </h3>
+                    <div className="grid gap-4">
+                      {group.items.map((item) => (
+                        <article
+                          key={item.title[locale]}
+                          className="rounded-lg border border-black/10 bg-white/78 p-6 shadow-[0_14px_34px_rgba(15,23,42,0.08)] transition-colors dark:border-white/12 dark:bg-white/8 dark:shadow-[0_14px_34px_rgba(0,0,0,0.22)]"
+                        >
+                          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                            <div>
+                              <h4 className="text-lg font-semibold text-black dark:text-white">
+                                {item.title[locale]}
+                              </h4>
+                              <p className="mt-1 text-sm font-medium text-black/46 dark:text-white/50">
+                                {item.subtitle[locale]}
+                              </p>
+                            </div>
+                            <span className="rounded-full bg-black/5 px-3 py-1 text-xs font-semibold text-black/50 dark:bg-white/10 dark:text-white/56">
+                              {item.period}
+                            </span>
+                          </div>
+                          <p className="mt-3 max-w-3xl text-sm leading-6 text-black/58 dark:text-white/62">
+                            {item.detail[locale]}
+                          </p>
+                        </article>
+                      ))}
                     </div>
-                    <p className="mt-3 max-w-3xl text-sm leading-6 text-black/58 dark:text-white/62">
-                      {item.detail[locale]}
-                    </p>
-                  </article>
+                  </div>
                 ))}
               </div>
             </section>
