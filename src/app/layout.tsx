@@ -5,6 +5,7 @@ import { InitialImageLoader } from "@/components/layout/initial-image-loader";
 import { LocaleProvider } from "@/components/locale-context";
 import { SiteNavigation } from "@/components/layout/site-navigation";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { Analytics } from "@vercel/analytics/next";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import "./globals.css";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
             <LanguageToggle />
             {children}
             <ThemeToggle />
+            <Analytics />
           </LocaleProvider>
         </InitialImageLoader>
       </body>
