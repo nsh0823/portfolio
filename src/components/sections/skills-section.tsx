@@ -61,6 +61,8 @@ const skillSections = [
       "Nginx",
       "GitHub Actions",
       "NCloud",
+      "Azure",
+      "Cloudflare",
     ],
   },
   {
@@ -118,7 +120,10 @@ type SkillsSectionProps = {
   avatarPriority?: boolean;
 };
 
-export function SkillsSection({ id = "skills", avatarPriority = true }: SkillsSectionProps) {
+export function SkillsSection({
+  id = "skills",
+  avatarPriority = true,
+}: SkillsSectionProps) {
   const { locale } = useLocale();
 
   return (
