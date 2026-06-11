@@ -353,14 +353,52 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
               <section className="mt-8 space-y-3">
                 <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
-                  My role
+                  {locale === "kr" ? "프로젝트 정보" : "Project info"}
+                </h3>
+                <dl className="grid gap-2 sm:grid-cols-2">
+                  {[
+                    {
+                      label: locale === "kr" ? "프로젝트 기간" : "Period",
+                      value: project.period,
+                    },
+                    {
+                      label: locale === "kr" ? "참여 기관" : "Organization",
+                      value: project.organization,
+                    },
+                    {
+                      label: locale === "kr" ? "참여 인원" : "Team size",
+                      value: project.teamSize,
+                    },
+                    {
+                      label: locale === "kr" ? "기여도" : "Contribution",
+                      value: project.contribution,
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[8px] border border-black/8 bg-black/[0.025] px-3 py-2 dark:border-white/10 dark:bg-white/[0.04]"
+                    >
+                      <dt className="text-xs font-semibold text-black/42 dark:text-white/48">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold leading-6 text-black/70 dark:text-white/74">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+
+              <section className="mt-8 space-y-3">
+                <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
+                  {locale === "kr" ? "담당 역할" : "My role"}
                 </h3>
                 <p className="text-sm leading-7 text-black/64 dark:text-white/66">{project.role}</p>
               </section>
 
               <section className="mt-8 space-y-3">
                 <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
-                  Main features
+                  {locale === "kr" ? "주요 기능" : "Main features"}
                 </h3>
                 <ul className="grid gap-2">
                   {project.features.map((feature) => (
@@ -376,7 +414,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
               <section className="mt-8 space-y-3">
                 <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-black/42 dark:text-white/48">
-                  Tech stack
+                  {locale === "kr" ? "기술 스택" : "Tech stack"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.stack.map((item) => (

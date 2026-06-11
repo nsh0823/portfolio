@@ -15,6 +15,10 @@ export type ProjectDetail = {
     password: string;
   };
   overview: string;
+  period: string;
+  organization: string;
+  teamSize: string;
+  contribution: string;
   role: string;
   features: string[];
   stack: string[];
@@ -30,6 +34,10 @@ type ProjectLocale = "en" | "kr";
 type ProjectTranslation = {
   description: string;
   overview: string;
+  period: string;
+  organization: string;
+  teamSize: string;
+  contribution: string;
   role: string;
   features: string[];
   captions: string[];
@@ -51,6 +59,10 @@ export const baseProjects: ProjectDetail[] = [
     repositoryHref: "https://github.com/nsh0823/portfolio",
     overview:
       "A personal portfolio focused on presenting selected work through tactile motion, project case studies, and a polished interface system. I wanted the site to feel interactive and user friendly while challenging myself with newer tools such as Next.js and Framer Motion.",
+    period: "2026.04 ~ 2026.05",
+    organization: "Personal",
+    teamSize: "1",
+    contribution: "100%",
     role:
       "I designed and built the portfolio experience end to end, including the project cards, responsive layout, motion interactions, and project detail flow. The visual direction was inspired by Toss Impact, I used ChatGPT to create the avatar version of myself, and I used Codex for coding assistance while building the site.",
     features: [
@@ -98,6 +110,10 @@ export const baseProjects: ProjectDetail[] = [
     repositoryHref: "https://github.com/nsh0823/funda",
     overview:
       "Funda is a gamified learning platform for computer science study. It guides learners through a Field, Unit, Step, and Quiz roadmap, then reinforces growth with spaced review, weekly tiers, personal dashboards, AI tutoring, and Socket.io-based real-time quiz battles.",
+    period: "2025.12 ~ 2026.02",
+    organization: "Naver Boostcamp",
+    teamSize: "4",
+    contribution: "25%",
     role:
       "I improved the first-entry experience by refining landing and main loading states, removing auth-state flicker, and tightening scroll and responsive behavior. I also shaped the learning synchronization UX around roadmap progress, answer rates, step completion, guest unlock logic, toast feedback, quiz animation and sound, readable code rendering, admin quiz upload flows, roadmap/sidebar UI, and the real-time battle start, quiz, disconnect, and countdown synchronization logic.",
     features: [
@@ -179,6 +195,10 @@ export const baseProjects: ProjectDetail[] = [
     },
     overview:
       "ONEGO is an AI-powered writing and blogging website for people who have difficulty writing. With one-click assistance, it can continue unfinished sentences, generate tags from page content, summarize drafts into subtitles, and support a full blog writing workflow from organization to preview.",
+    period: "2021.07 ~ 2021.08",
+    organization: "En-core Playdata",
+    teamSize: "8",
+    contribution: "15%",
     role:
       "I handled front-end web development with Vue.js, HTML, and CSS. I designed and implemented the header, sidebar, footer, search, search results, account settings, edit profile, my profile, change password, saved blogs, posted blogs, and blog writing pages. On the writing page, I added font size and style controls, content folder management, memos, tags, image upload, and blog preview features.",
     features: [
@@ -263,6 +283,10 @@ export const baseProjects: ProjectDetail[] = [
     repositoryHref: "https://github.com/nsh0823/instaQuote",
     overview:
       "instaQuote is a quotation generation tool that automates CPI calculation, sales and gross margin estimation, RFQ tracking, and quote document creation. It connects Google Sheets, Gmail, and a web interface so project managers can generate standardized quotations efficiently and avoid manual RFQ data-entry errors.",
+    period: "2024.08 ~ 2025.05",
+    organization: "Dataspring Korea + Personal",
+    teamSize: "1",
+    contribution: "100%",
     role:
       "I designed the UI/UX in Figma, built the front end with HTML, CSS, JavaScript, React, TypeScript, Tailwind CSS, and shadcn/ui, and developed Google Apps Script back-end flows for processing Google Sheets data. I implemented batch country selection, automated quotation document generation, Gmail-based client/contact extraction, RFQ CRUD, saved RFQ loading, RFQ updates, quote tracking, and workflow logic that removes manual CPI lookup and RFQ input.",
     features: [
@@ -314,6 +338,10 @@ const projectKoreanTranslations: ProjectTranslation[] = [
       "이 사이트가 발전해 가는 과정 속에서 제 작업, 실험, 인터페이스 디테일을 담아내는 살아 있는 공간입니다.",
     overview:
       "선별한 작업을 촉각적인 모션, 프로젝트 사례, 완성도 있는 인터페이스 시스템으로 보여주는 개인 포트폴리오입니다. Next.js와 Framer Motion 같은 새로운 도구에 도전하면서도, 사이트가 인터랙티브하고 사용자 친화적으로 느껴지도록 만들고 싶었습니다.",
+    period: "2026.04 ~ 2026.05",
+    organization: "개인",
+    teamSize: "1",
+    contribution: "100%",
     role:
       "프로젝트 카드, 반응형 레이아웃, 모션 인터랙션, 프로젝트 상세 흐름까지 포트폴리오 경험 전반을 직접 설계하고 구현했습니다. 시각적 방향은 Toss Impact에서 영감을 받았고, ChatGPT로 저를 닮은 아바타 이미지를 만들었으며, 사이트를 구축하는 과정에서는 Codex의 코딩 도움을 활용했습니다.",
     features: [
@@ -335,6 +363,10 @@ const projectKoreanTranslations: ProjectTranslation[] = [
       "로드맵, 퀴즈, 복습, AI 도움, 실시간 배틀을 결합한 게임형 CS 학습 서비스입니다.",
     overview:
       "Funda는 컴퓨터 과학 학습을 위한 게임형 학습 플랫폼입니다. Field, Unit, Step, Quiz로 이어지는 로드맵으로 학습자를 안내하고, 간격 반복 복습, 주간 티어, 개인 대시보드, AI 튜터링, Socket.io 기반 실시간 퀴즈 배틀로 성장을 강화합니다.",
+    period: "2025.12 ~ 2026.02",
+    organization: "네이버 부스트캠프",
+    teamSize: "4",
+    contribution: "25%",
     role:
       "랜딩과 메인 로딩 상태를 개선하고, 인증 상태 깜빡임을 제거했으며, 스크롤과 반응형 동작을 다듬어 첫 진입 경험을 개선했습니다. 또한 로드맵 진행률, 정답률, 스텝 완료, 게스트 잠금 해제 로직, 토스트 피드백, 퀴즈 애니메이션과 사운드, 읽기 쉬운 코드 렌더링, 관리자 퀴즈 업로드 흐름, 로드맵/사이드바 UI, 실시간 배틀 시작, 퀴즈, 연결 해제, 카운트다운 동기화 로직을 중심으로 학습 동기화 UX를 다듬었습니다.",
     features: [
@@ -358,6 +390,10 @@ const projectKoreanTranslations: ProjectTranslation[] = [
       "문장 완성, 요약, 태그 생성, 구조적인 글쓰기를 지원하는 AI 보조 블로그 에디터입니다.",
     overview:
       "ONEGO는 글쓰기에 어려움을 느끼는 사람들을 위한 AI 기반 글쓰기 및 블로그 웹사이트입니다. 클릭 한 번으로 미완성 문장을 이어 쓰고, 페이지 내용을 바탕으로 태그를 생성하며, 초안을 부제목으로 요약하고, 정리부터 미리보기까지 전체 블로그 작성 흐름을 지원합니다.",
+    period: "2021.07 ~ 2021.08",
+    organization: "엔코아 플레이데이터",
+    teamSize: "8",
+    contribution: "15%",
     role:
       "Vue.js, HTML, CSS를 사용해 프런트엔드 웹 개발을 담당했습니다. 헤더, 사이드바, 푸터, 검색, 검색 결과, 계정 설정, 프로필 수정, 내 프로필, 비밀번호 변경, 저장한 블로그, 작성한 블로그, 블로그 글쓰기 페이지를 설계하고 구현했습니다. 글쓰기 페이지에는 글자 크기와 스타일 조절, 콘텐츠 폴더 관리, 메모, 태그, 이미지 업로드, 블로그 미리보기 기능을 추가했습니다.",
     features: [
@@ -383,6 +419,10 @@ const projectKoreanTranslations: ProjectTranslation[] = [
       "CPI 계산, RFQ 관리, 견적 추적, 문서 생성을 자동화하는 견적 업무 도구입니다.",
     overview:
       "instaQuote는 CPI 계산, 매출 및 매출총이익 추정, RFQ 추적, 견적 문서 생성을 자동화하는 견적 생성 도구입니다. Google Sheets, Gmail, 웹 인터페이스를 연결해 프로젝트 매니저가 표준화된 견적서를 효율적으로 생성하고 수작업 RFQ 데이터 입력 오류를 줄일 수 있도록 합니다.",
+    period: "2024.08 ~ 2025.05",
+    organization: "데이터스프링코리아 + 개인",
+    teamSize: "1",
+    contribution: "100%",
     role:
       "Figma로 UI/UX를 설계하고, HTML, CSS, JavaScript, React, TypeScript, Tailwind CSS, shadcn/ui로 프런트엔드를 구축했으며, Google Sheets 데이터를 처리하는 Google Apps Script 백엔드 흐름을 개발했습니다. 국가 일괄 선택, 자동 견적 문서 생성, Gmail 기반 클라이언트/담당자 추출, RFQ CRUD, 저장된 RFQ 불러오기, RFQ 업데이트, 견적 추적, 수동 CPI 조회와 RFQ 입력을 줄이는 워크플로 로직을 구현했습니다.",
     features: [
@@ -414,6 +454,10 @@ export function getLocalizedProjects(locale: ProjectLocale): ProjectDetail[] {
       ...project,
       description: translation.description,
       overview: translation.overview,
+      period: translation.period,
+      organization: translation.organization,
+      teamSize: translation.teamSize,
+      contribution: translation.contribution,
       role: translation.role,
       features: translation.features,
       screenshots: project.screenshots.map((screenshot, screenshotIndex) => ({
