@@ -284,13 +284,13 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 </p>
               </div>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {project.local ? null : (
                   <a
                     href={project.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-[#202731] px-4 text-sm font-semibold text-white transition hover:bg-black dark:bg-white dark:text-slate-950 dark:hover:bg-white/88"
+                    className="inline-flex h-10 min-w-max items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#202731] px-4 text-sm font-semibold text-white transition hover:bg-black dark:bg-white dark:text-slate-950 dark:hover:bg-white/88"
                   >
                     Visit website
                     <ExternalLink className="size-4" />
@@ -300,7 +300,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   href={project.repositoryHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-black/68 transition hover:bg-black/[0.04] dark:border-white/12 dark:bg-white/8 dark:text-white/72 dark:hover:bg-white/12"
+                  className="inline-flex h-10 min-w-max items-center justify-center gap-2 whitespace-nowrap rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-black/68 transition hover:bg-black/[0.04] dark:border-white/12 dark:bg-white/8 dark:text-white/72 dark:hover:bg-white/12"
                 >
                   Project repository
                   <GitBranch className="size-4" />
@@ -310,7 +310,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                     href={project.workflowHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-orange-500/22 bg-orange-50 px-4 text-sm font-semibold text-orange-600 transition hover:bg-orange-100 dark:border-orange-300/18 dark:bg-orange-400/10 dark:text-orange-200 dark:hover:bg-orange-400/16"
+                    className="inline-flex h-10 min-w-max items-center justify-center gap-2 whitespace-nowrap rounded-full border border-orange-500/22 bg-orange-50 px-4 text-sm font-semibold text-orange-600 transition hover:bg-orange-100 dark:border-orange-300/18 dark:bg-orange-400/10 dark:text-orange-200 dark:hover:bg-orange-400/16"
                   >
                     View n8n
                     <Workflow className="size-4" />
