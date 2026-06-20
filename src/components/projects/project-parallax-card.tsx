@@ -21,6 +21,8 @@ type ProjectParallaxCardProps = {
   index: string;
   signature: string;
   cardImage?: string;
+  cardStack?: string[];
+  stack?: string[];
   local?: boolean;
   revealDelay?: number;
   onActiveChange?: (active: boolean) => void;
@@ -35,6 +37,8 @@ export function ProjectParallaxCard({
   secondary,
   index,
   cardImage,
+  cardStack,
+  stack = [],
   revealDelay = 0,
   onActiveChange,
   onOpen,
@@ -57,6 +61,7 @@ export function ProjectParallaxCard({
   const glareX = useTransform(smoothX, [-1, 1], [0, 100]);
   const glareY = useTransform(smoothY, [-1, 1], [0, 100]);
   const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.44), rgba(255,255,255,0.12) 24%, transparent 54%)`;
+  const visibleStack = (cardStack?.length ? cardStack : stack).slice(0, 5);
 
   const updatePointer = (event: React.PointerEvent<HTMLElement>) => {
     if (shouldReduceMotion) {
@@ -240,6 +245,7 @@ export function ProjectParallaxCard({
                 src={cardImage}
                 alt=""
                 fill
+                unoptimized
                 sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover object-top"
               />
@@ -249,7 +255,7 @@ export function ProjectParallaxCard({
         </div>
 
         <div
-          className="absolute inset-x-0 bottom-0 z-10 flex h-[55%] flex-col bg-white px-7 py-7 transition-colors dark:bg-slate-950"
+          className="absolute inset-x-0 bottom-0 z-10 flex h-[58%] flex-col bg-white px-7 py-6 transition-colors dark:bg-slate-950"
           style={{ transform: "translateZ(58px)" }}
         >
           <div className="flex items-center justify-between gap-3 text-xs font-semibold text-black/38 dark:text-white/42 sm:text-sm">
@@ -257,7 +263,7 @@ export function ProjectParallaxCard({
             <span>{index}</span>
           </div>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-6 space-y-3">
             <p className="text-lg font-semibold leading-none text-black/38 dark:text-white/42">
               Project {index}
             </p>
@@ -268,6 +274,19 @@ export function ProjectParallaxCard({
               {description}
             </p>
           </div>
+
+          {visibleStack.length > 0 ? (
+            <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+              {visibleStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-black/8 bg-black/[0.035] px-2.5 py-1 text-[11px] font-semibold leading-none text-black/54 transition-colors dark:border-white/10 dark:bg-white/8 dark:text-white/60"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          ) : null}
         </div>
       </motion.article>
     </motion.button>
