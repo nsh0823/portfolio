@@ -139,16 +139,16 @@ const aboutCopy = {
   },
   drivesMe: [
     {
-      en: "I first became interested in development when I saw that code could turn repeated manual work into a clear, reusable process. Even a small tool can have real impact when it removes friction from someone’s daily workflow.",
-      kr: "코드가 반복적인 수작업을 명확하고 재사용 가능한 프로세스로 바꿀 수 있다는 것을 보며 개발에 흥미를 느끼기 시작했습니다. 작은 도구라도 누군가의 매일 반복되는 업무 마찰을 줄인다면 실제적인 영향을 만들 수 있다고 생각합니다.",
+      en: "I first became interested in development when I realized that code could make complex problems easier to handle. Even with small features, seeing people actually use what I built and experience less inconvenience helped me understand the impact that development can have.",
+      kr: "제가 개발에 흥미를 느끼기 시작한 순간은, 코드를 통해 복잡한 문제를 더 쉽게 다룰 수 있다는 것을 알게 되었을 때였습니다. 작은 기능이라도 누군가가 실제로 사용하고, 그로 인해 불편함이 줄어드는 모습을 보며 개발이 가진 힘을 처음 느꼈습니다.",
     },
     {
-      en: "At dataSpring Korea, I analyzed quotation, survey programming, and app/webview response flows that depended on repeated checks across sheets, documents, and external platforms. I built internal web tools, automation scripts, validation logic, and reusable script documentation so teams could reduce preparation time, input errors, and manual checks. Designing and building internal tools on my own was not always easy, but I found great fulfillment in seeing repetitive tasks reduced and users work more efficiently.",
-      kr: "데이터스프링코리아에서는 견적, 설문 프로그래밍, 앱/웹뷰 응답 흐름처럼 시트, 문서, 외부 플랫폼을 반복 확인해야 하는 업무를 분석했습니다. 내부 웹 도구, 자동화 스크립트, 검증 로직, 재사용 가능한 스크립트 문서를 만들어 작업 시간, 입력 오류, 수동 확인 과정을 줄였습니다. 혼자서 내부 도구를 설계하고 구현하는 과정은 쉽지 않았지만, 반복 업무가 줄고 사용자가 더 효율적으로 일하는 모습을 보며 큰 보람을 느꼈습니다",
+      en: "At dataSpring Korea, I carried this interest into practice as a survey programmer and automation lead. Designing and building internal tools on my own was not always easy, but I found great fulfillment in seeing repetitive tasks reduced and users work more efficiently. This experience became a key turning point that led me toward user-centered web development.",
+      kr: "데이터스프링코리아에서는 설문 프로그래머이자 자동화 담당자로 일하며 이러한 관심을 실무로 이어갔습니다. 혼자서 내부 도구를 설계하고 구현하는 과정은 쉽지 않았지만, 반복 업무가 줄고 사용자가 더 효율적으로 일하는 모습을 보며 큰 보람을 느꼈습니다. 이 경험은 제가 사용자 중심의 웹 개발을 지향하게 된 중요한 계기가 되었습니다.",
     },
     {
-      en: "Through Naver Boostcamp, I expanded this approach into product engineering. I built an n8n and AI-based pipeline that converted curriculum data into validated JSONL quiz content, then worked on auth loading UX, real-time timer accuracy, rendering boundaries, testing, and refactoring. Learning new technologies, structuring ambiguous problems, and turning ideas into working products helped me grow significantly as a developer.",
-      kr: "네이버 부스트캠프에서는 이러한 접근을 제품 개발로 확장했습니다. 커리큘럼 데이터를 검증된 JSONL 퀴즈 콘텐츠로 변환하는 n8n과 AI 기반 파이프라인을 만들고, 인증 로딩 UX, 실시간 타이머 정확도, 렌더링 경계, 테스트와 리팩토링을 다뤘습니다. 새로운 기술을 빠르게 배우고, 모호한 문제를 구조화하고, 실제로 동작하는 결과물로 만들어내는 과정을 통해 개발자로서 크게 성장했습니다.",
+      en: "Later, through Naver Boostcamp, I expanded the way I approach problem-solving by building web services and using AI in the development process. Learning new technologies, structuring ambiguous problems, and turning ideas into working products strengthened my confidence as a developer.",
+      kr: "이후 네이버 부스트캠프에서는 웹 서비스 개발과 AI 활용을 경험하며, 문제를 해결하는 방식의 폭을 넓혔습니다. 새로운 기술을 배우고, 모호한 문제를 구조화하고, 실제로 동작하는 결과물로 만들어내는 과정에서 개발자로서의 확신도 커졌습니다.",
     },
     {
       en: "For me, the joy of development starts with solving problems, but it becomes most rewarding when those solutions reduce someone’s inconvenience and create a better user experience. I want to keep learning and growing by identifying small user pain points and turning them into more convenient experiences.",
