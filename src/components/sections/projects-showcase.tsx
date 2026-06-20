@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FolderKanban } from "lucide-react";
+import { ChevronDown, ChevronUp, FolderKanban } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { useLocale } from "@/components/locale-context";
@@ -21,8 +21,13 @@ export function ProjectsShowcase({ id = "projects" }: ProjectsShowcaseProps) {
     string | null
   >(null);
   const [hasEnteredGrid, setHasEnteredGrid] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const gridRef = useRef<HTMLElement | null>(null);
+  const secondRowRef = useRef<HTMLDivElement | null>(null);
+  const pendingScrollTargetRef = useRef<"top" | "second-row" | null>(null);
   const projects = useMemo(() => getLocalizedProjects(locale), [locale]);
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, 3);
+  const hasExpandableProjects = projects.length > 3;
   const selectedProject = useMemo(
     () =>
       selectedProjectTitle
@@ -61,6 +66,40 @@ export function ProjectsShowcase({ id = "projects" }: ProjectsShowcaseProps) {
     };
   }, []);
 
+  useEffect(() => {
+    const pendingScrollTarget = pendingScrollTargetRef.current;
+
+    if (!pendingScrollTarget) {
+      return;
+    }
+
+    pendingScrollTargetRef.current = null;
+
+    const element =
+      pendingScrollTarget === "second-row"
+        ? secondRowRef.current
+        : gridRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - 112;
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        top: Math.max(top, 0),
+        behavior: "smooth",
+      });
+    });
+  }, [showAllProjects]);
+
+  const handleProjectVisibilityToggle = () => {
+    pendingScrollTargetRef.current = showAllProjects ? "top" : "second-row";
+    setShowAllProjects((current) => !current);
+  };
+
   return (
     <section
       id={id}
@@ -92,11 +131,12 @@ export function ProjectsShowcase({ id = "projects" }: ProjectsShowcaseProps) {
 
         <section
           ref={gridRef}
-          className="grid gap-8 md:grid-cols-2 xl:grid-cols-4"
+          className="grid gap-12 md:grid-cols-2 xl:grid-cols-3"
         >
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <motion.div
               key={project.title}
+              ref={index === 3 ? secondRowRef : undefined}
               className="min-h-[430px] sm:min-h-[480px]"
               initial={{ opacity: 0, x: -26, y: 18 }}
               animate={
@@ -117,6 +157,23 @@ export function ProjectsShowcase({ id = "projects" }: ProjectsShowcaseProps) {
             </motion.div>
           ))}
         </section>
+
+        {hasExpandableProjects ? (
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={handleProjectVisibilityToggle}
+              className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-full border border-black/10 bg-white/72 px-5 text-sm font-semibold text-black/68 shadow-[0_12px_28px_rgba(15,23,42,0.08)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:border-white/12 dark:bg-white/8 dark:text-white/72 dark:shadow-[0_12px_28px_rgba(0,0,0,0.22)] dark:hover:bg-white/12 dark:focus-visible:ring-white/24"
+            >
+              {showAllProjects ? "Show Less" : "Load More"}
+              {showAllProjects ? (
+                <ChevronUp className="size-4" />
+              ) : (
+                <ChevronDown className="size-4" />
+              )}
+            </button>
+          </div>
+        ) : null}
       </div>
       <ProjectDetailModal
         key={selectedProject?.title ?? "empty-project-modal"}
