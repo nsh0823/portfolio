@@ -3,6 +3,7 @@ export type ProjectDetail = {
   description: string;
   href: string;
   repositoryHref: string;
+  workflowHref?: string;
   label: string;
   accent: string;
   secondary: string;
@@ -119,6 +120,7 @@ export const baseProjects: ProjectDetail[] = [
     cardImage: "/images/screenshots/funda_screenshot.png",
     cardStack: ["React", "TypeScript", "n8n", "Socket.io", "NestJS"],
     repositoryHref: "https://github.com/nsh0823/funda",
+    workflowHref: "https://share-n8n.com/shared/P4p1HXy7U0Lq",
     overview:
       "Funda is a gamified learning platform for computer science study. It guides learners through a Field, Unit, Step, and Quiz roadmap, then reinforces growth with spaced review, weekly tiers, personal dashboards, AI tutoring, and Socket.io-based real-time quiz battles. My work also included an n8n and AI-based generation workflow that reduced a large manual quiz-creation process into a repeatable, validated pipeline.",
     period: "2025.12 ~ 2026.02",
@@ -356,6 +358,7 @@ export const baseProjects: ProjectDetail[] = [
     cardImage: "/images/screenshots/narrive_screenshot.png",
     cardStack: ["Next.js", "n8n", "Gemini", "PostgreSQL", "TanStack Query"],
     repositoryHref: "https://github.com/nsh0823/narrive",
+    workflowHref: "https://share-n8n.com/shared/VBNUWSQJ8mav",
     overview:
       "Narrive is an AI-based investment research automation web service that connects Next.js, n8n, Gemini, RapidAPI, and PostgreSQL. It turns symbol-based market inputs into generated investment reports, then supports report saving, retrieval, symbol search, trending ticker data, and market calendar data through server APIs.",
     period: "2026.06 ~ 2026.06",

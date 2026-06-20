@@ -10,6 +10,7 @@ import {
   Copy,
   GitBranch,
   ExternalLink,
+  Workflow,
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -304,6 +305,17 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                   Project repository
                   <GitBranch className="size-4" />
                 </a>
+                {project.workflowHref ? (
+                  <a
+                    href={project.workflowHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-orange-500/22 bg-orange-50 px-4 text-sm font-semibold text-orange-600 transition hover:bg-orange-100 dark:border-orange-300/18 dark:bg-orange-400/10 dark:text-orange-200 dark:hover:bg-orange-400/16"
+                  >
+                    View n8n
+                    <Workflow className="size-4" />
+                  </a>
+                ) : null}
               </div>
 
               {demoAccount ? (
