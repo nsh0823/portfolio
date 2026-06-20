@@ -9,6 +9,7 @@ export type ProjectDetail = {
   index: string;
   signature: string;
   cardImage?: string;
+  cardStack?: string[];
   local?: boolean;
   demoAccount?: {
     email: string;
@@ -43,6 +44,15 @@ type ProjectTranslation = {
   captions: string[];
 };
 
+const projectDisplayOrder = ["Funda", "Narrive", "instaQuote", "Portfolio", "Onego"];
+
+function orderProjects(projects: ProjectDetail[]) {
+  return [...projects].sort(
+    (a, b) =>
+      projectDisplayOrder.indexOf(a.title) - projectDisplayOrder.indexOf(b.title),
+  );
+}
+
 export const baseProjects: ProjectDetail[] = [
   {
     title: "Portfolio",
@@ -52,10 +62,11 @@ export const baseProjects: ProjectDetail[] = [
     label: "Portfolio",
     accent: "#0F766E",
     secondary: "#F4D35E",
-    index: "01",
+    index: "04",
     signature: "portfolio",
     local: true,
     cardImage: "/images/screenshots/portfolio_screenshot.png",
+    cardStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
     repositoryHref: "https://github.com/nsh0823/portfolio",
     overview:
       "A personal portfolio focused on presenting selected work through tactile motion, project case studies, and a polished interface system. I wanted the site to feel interactive and user friendly while challenging myself with newer tools such as Next.js and Framer Motion.",
@@ -104,9 +115,10 @@ export const baseProjects: ProjectDetail[] = [
     label: "Gamified CS Learning",
     accent: "#6559EA",
     secondary: "#D1CEF9",
-    index: "02",
+    index: "01",
     signature: "funda",
     cardImage: "/images/screenshots/funda_screenshot.png",
+    cardStack: ["React", "TypeScript", "Vite", "Zustand", "TanStack Query"],
     repositoryHref: "https://github.com/nsh0823/funda",
     overview:
       "Funda is a gamified learning platform for computer science study. It guides learners through a Field, Unit, Step, and Quiz roadmap, then reinforces growth with spaced review, weekly tiers, personal dashboards, AI tutoring, and Socket.io-based real-time quiz battles.",
@@ -185,9 +197,10 @@ export const baseProjects: ProjectDetail[] = [
     label: "AI Blog Writing",
     accent: "#2563EB",
     secondary: "#93C5FD",
-    index: "03",
+    index: "05",
     signature: "onego",
     cardImage: "/images/screenshots/onego_screenshot.png",
+    cardStack: ["Vue.js", "Vuetify", "JavaScript", "HTML", "CSS"],
     repositoryHref: "https://github.com/nsh0823/onego",
     demoAccount: {
       email: "test@example.com",
@@ -277,9 +290,10 @@ export const baseProjects: ProjectDetail[] = [
     label: "Quotation Tool",
     accent: "#3d3d43",
     secondary: "#484458",
-    index: "04",
+    index: "03",
     signature: "insta quote",
     cardImage: "/images/screenshots/instaquote_screenshot.png",
+    cardStack: ["React", "TypeScript", "Tailwind CSS", "shadcn/ui", "TanStack Query"],
     repositoryHref: "https://github.com/nsh0823/instaQuote",
     overview:
       "instaQuote is a quotation generation tool that automates CPI calculation, sales and gross margin estimation, RFQ tracking, and quote document creation. It connects Google Sheets, Gmail, and a web interface so project managers can generate standardized quotations efficiently and avoid manual RFQ data-entry errors.",
@@ -327,6 +341,69 @@ export const baseProjects: ProjectDetail[] = [
         title: "RFQ summary",
         caption: "A summary view for checking quote request details.",
         src: "/images/screenshots/insta_rfqsummary.png",
+      },
+    ],
+  },
+  {
+    title: "Narrive",
+    description:
+      "A frontend-focused AI investment research interface for configuring reports, reviewing insights, and scanning market signals.",
+    href: "https://narrive.vercel.app/",
+    label: "AI Research UI",
+    accent: "#EA580C",
+    secondary: "#FDBA74",
+    index: "02",
+    signature: "narrive",
+    cardImage: "/images/screenshots/narrive_screenshot.png",
+    cardStack: ["Next.js", "TypeScript", "Tailwind CSS", "TanStack Query", "Vercel"],
+    repositoryHref: "https://github.com/nsh0823/narrive",
+    overview:
+      "Narrive is an AI-powered investment research web app focused on turning complex market data into a clear research workflow. The frontend guides users from symbol selection and report configuration to AI-generated summaries, technical signals, news sentiment, and saved report review.",
+    period: "2026.06 ~ 2026.06",
+    organization: "Personal",
+    teamSize: "1",
+    contribution: "100%",
+    role:
+      "I designed and implemented the frontend experience with Next.js, TypeScript, Tailwind CSS, and TanStack Query. I focused on the dashboard layout, symbol-selection flow, research configuration controls, report summary view, tabbed symbol analysis, chart-heavy technical signal screens, news sentiment UI, and responsive interaction states that make AI-generated research easier to scan and compare.",
+    features: [
+      "Dashboard flow for selecting symbols, choosing analysis type, setting time horizon, and generating reports.",
+      "Report summary UI with executive summary, opportunity/risk cards, confidence indicators, and ranked opportunities.",
+      "Tabbed symbol analysis interface covering overview, technical signals, news analysis, risks, and evidence.",
+      "Technical signal and news sentiment screens with charts, metric cards, article lists, and status labels.",
+      "Frontend data-fetching structure using TanStack Query for report, symbol, and market-data interactions.",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "PostgreSQL",
+      "TanStack Query",
+      "n8n",
+      "Gemini",
+      "RapidAPI",
+      "Vercel",
+    ],
+    screenshots: [
+      {
+        title: "Research Setup",
+        caption: "종목 선택 및 리서치 조건 설정",
+        src: "/images/screenshots/narrive_1.png",
+      },
+      {
+        title: "Report Summary",
+        caption: "AI 투자 리포트 요약",
+        src: "/images/screenshots/narrive_2.png",
+      },
+      {
+        title: "Technical Signals",
+        caption: "기술적 지표 분석",
+        src: "/images/screenshots/narrive_3.png",
+      },
+      {
+        title: "News Analysis",
+        caption: "뉴스 및 감성 분석",
+        src: "/images/screenshots/narrive_4.png",
       },
     ],
   },
@@ -439,15 +516,40 @@ const projectKoreanTranslations: ProjectTranslation[] = [
       "견적 요청 세부 정보를 확인하는 요약 화면.",
     ],
   },
+  {
+    description:
+      "리포트 조건 설정, 투자 인사이트 확인, 시장 신호 탐색을 위한 프런트엔드 중심 AI 투자 리서치 인터페이스입니다.",
+    overview:
+      "Narrive는 복잡한 시장 데이터를 명확한 리서치 흐름으로 바꾸는 AI 투자 리서치 웹 앱입니다. 프런트엔드는 종목 선택과 리포트 조건 설정부터 AI 요약, 기술적 지표, 뉴스 감성, 저장된 리포트 확인까지 이어지는 흐름을 제공합니다.",
+    period: "2026.06 ~ 2026.06",
+    organization: "개인",
+    teamSize: "1",
+    contribution: "100%",
+    role:
+      "Next.js, TypeScript, Tailwind CSS, TanStack Query를 사용해 프런트엔드 경험을 설계하고 구현했습니다. 대시보드 레이아웃, 종목 선택 흐름, 리서치 조건 설정 컨트롤, 리포트 요약 화면, 탭 기반 종목 분석, 차트 중심 기술적 지표 화면, 뉴스 감성 UI, AI 리서치를 쉽게 훑고 비교할 수 있는 반응형 상호작용 상태에 집중했습니다.",
+    features: [
+      "종목 선택, 분석 유형 선택, 기간 설정, 리포트 생성을 연결하는 대시보드 흐름.",
+      "핵심 요약, 기회/리스크 카드, 신뢰도 지표, 상위 기회를 보여주는 리포트 요약 UI.",
+      "개요, 기술적 지표, 뉴스 분석, 리스크, 근거를 다루는 탭 기반 종목 분석 인터페이스.",
+      "차트, 지표 카드, 기사 목록, 상태 라벨로 구성한 기술적 지표 및 뉴스 감성 화면.",
+      "리포트, 종목, 시장 데이터 상호작용을 위한 TanStack Query 기반 프런트엔드 데이터 흐름.",
+    ],
+    captions: [
+      "종목 선택 및 리서치 조건 설정",
+      "AI 투자 리포트 요약",
+      "기술적 지표 분석",
+      "뉴스 및 감성 분석",
+    ],
+  },
 ];
 
 
 export function getLocalizedProjects(locale: ProjectLocale): ProjectDetail[] {
   if (locale === "en") {
-    return baseProjects;
+    return orderProjects(baseProjects);
   }
 
-  return baseProjects.map((project, projectIndex) => {
+  return orderProjects(baseProjects.map((project, projectIndex) => {
     const translation = projectKoreanTranslations[projectIndex];
 
     return {
@@ -465,5 +567,5 @@ export function getLocalizedProjects(locale: ProjectLocale): ProjectDetail[] {
         caption: translation.captions[screenshotIndex],
       })),
     };
-  });
+  }));
 }
