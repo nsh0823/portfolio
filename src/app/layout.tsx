@@ -11,7 +11,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Peter Nam",
-  description: "Selected portfolio projects with interactive motion cards.",
+  description:
+    "Portfolio covering AI automation, workflow optimization, and practical full-stack web tools.",
 };
 
 export default function RootLayout({

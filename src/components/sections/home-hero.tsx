@@ -10,15 +10,15 @@ import { useLocale } from "@/components/locale-context";
 import { ParallaxAvatar } from "@/components/parallax-avatar";
 
 const descriptors = [
-  "Full-stack developer",
+  "AI automation builder",
+  "Workflow optimizer",
   "Problem solver",
-  "Automation builder",
-  "UI-focused engineer",
+  "Full-stack developer",
 ];
 
 const heroIntro = {
-  en: "\"Crafting intuitive web experiences with careful attention to every user-facing detail.\"",
-  kr: "\"사용자와 맞닿는 작은 디테일까지 고민하며, 편리하고 직관적인 웹 경험을 만듭니다.\"",
+  en: "\"Identifying real-world operational problems and turning them into practical web, AI, and automation solutions.\"",
+  kr: "\"현장의 문제를 발견하고, 웹 개발과 AI 자동화로 실행 가능한 해결책을 만듭니다.\"",
 };
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {

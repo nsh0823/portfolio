@@ -17,6 +17,20 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 
 const skillSections = [
   {
+    title: "Automation / AI",
+    icon: Wrench,
+    accent: "#be123c",
+    skills: [
+      "n8n",
+      "Google Apps Script",
+      "JavaScript automation",
+      "JSON Schema",
+      "Macro tools",
+      "ChatGPT Codex",
+      "Workflow optimization",
+    ],
+  },
+  {
     title: "Frontend",
     icon: Code2,
     accent: "#0f766e",
@@ -46,7 +60,7 @@ const skillSections = [
     title: "Data",
     icon: Database,
     accent: "#7c3aed",
-    skills: ["MySQL", "Redis", "MongoDB", "RDBMS", "Excel"],
+    skills: ["MySQL", "Redis", "MongoDB", "Google Sheets", "JSON", "JSONL", "RDBMS", "Excel"],
   },
   {
     title: "DevOps",
@@ -66,52 +80,40 @@ const skillSections = [
     ],
   },
   {
-    title: "Automation",
-    icon: Wrench,
-    accent: "#be123c",
-    skills: [
-      "Google Apps Script",
-      "JavaScript automation",
-      "Macro tools",
-      "n8n",
-      "Workflow optimization",
-    ],
-  },
-  {
     title: "Tools",
     icon: GitBranch,
     accent: "#334155",
-    skills: ["Git", "GitHub", "Figma", "Jira", "VS Code", "Codex"],
+    skills: ["Git", "GitHub", "Figma", "Notion", "Jira", "VS Code", "Postman"],
   },
 ];
 
 const focusAreas = [
   {
-    en: "User-centered interface development",
-    kr: "사용자 중심 인터페이스 개발",
+    en: "Operational problem discovery",
+    kr: "운영 문제 발견과 분석",
   },
   {
-    en: "Internal tool and workflow automation",
-    kr: "내부 도구 및 워크플로 자동화",
+    en: "AI and workflow automation",
+    kr: "AI 및 워크플로 자동화",
   },
   {
-    en: "Full-stack product implementation",
-    kr: "풀스택 제품 구현",
+    en: "Validation-first implementation",
+    kr: "검증 중심 구현",
   },
   {
-    en: "Readable, maintainable code",
-    kr: "읽기 쉽고 유지보수하기 좋은 코드",
+    en: "Adoptable internal tools",
+    kr: "실무에 적용 가능한 내부 도구",
   },
 ];
 
 const skillsCopy = {
   intro: {
-    en: "A practical stack shaped by building user interfaces, internal tools, automation scripts, and full-stack web applications.",
-    kr: "사용자 인터페이스, 내부 도구, 자동화 스크립트, 풀스택 웹 애플리케이션을 만들며 다져온 실용적인 기술 스택입니다.",
+    en: "A practical stack shaped by building internal tools, AI-assisted content pipelines, validation workflows, automation scripts, and full-stack web applications.",
+    kr: "내부 도구, AI 기반 콘텐츠 파이프라인, 검증 워크플로, 자동화 스크립트, 풀스택 웹 애플리케이션을 만들며 다져온 실용적인 기술 스택입니다.",
   },
   workingStyle: {
-    en: "I enjoy learning new technologies and tools, quickly applying them to solve problems more efficiently. By actively using AI tools in my development process, I aim to keep growing as a developer who finds better solutions in a constantly evolving tech landscape.",
-    kr: "새로운 기술과 도구를 배우는 데 두려움이 없으며, 이를 빠르게 습득해 문제를 더 효율적인 방향으로 해결하는 것을 즐깁니다. AI 도구를 개발 과정에 적극적으로 활용하며, 변화하는 기술 흐름 속에서 더 나은 해결 방식을 찾아가는 개발자로 성장하고자 합니다.",
+    en: "I work from problem analysis to prototype, validation, implementation, and iteration. I use AI tools, n8n, and automation deliberately to reduce repetitive work, make outputs easier to verify, and build workflows that teammates can actually run.",
+    kr: "문제 분석에서 프로토타입, 검증, 구현, 반복 개선까지 이어지는 방식으로 일합니다. AI 도구, n8n, 자동화를 목적에 맞게 활용해 반복 작업을 줄이고, 결과를 검증하기 쉽게 만들며, 팀원이 실제로 실행할 수 있는 워크플로를 구축합니다.",
   },
 };
 

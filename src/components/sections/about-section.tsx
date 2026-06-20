@@ -32,8 +32,8 @@ const experienceHighlights = [
     },
     period: "2022.02 - 2025.06",
     detail: {
-      en: "Improved UX and workflow efficiency through survey UI/webview operations, platform integrations, and internal automation tools.",
-      kr: "설문 UI와 웹뷰 환경을 운영하며, 외부 플랫폼 연동과 내부 자동화 도구 개발로 사용자 경험과 업무 효율을 개선했습니다.",
+      en: "Identified repetitive work, input errors, and unstable response flows, then improved operational efficiency with web tools, survey UI/webview development, and automation scripts.",
+      kr: "반복 업무, 입력 오류, 불안정한 응답 흐름을 파악하고 웹 도구, 설문 UI/웹뷰 개발, 자동화 스크립트로 업무 효율과 운영 안정성을 개선했습니다.",
     },
   },
   {
@@ -47,8 +47,8 @@ const experienceHighlights = [
     },
     period: "2025.06 - 2026.02",
     detail: {
-      en: "Built React, TypeScript, and Node.js-based services, covering real-time features, state management, testing, CI/CD, and deployment.",
-      kr: "React, TypeScript, Node.js 기반으로 실시간 기능, 상태 관리, 테스트, CI/CD, 배포까지 서비스 개발 전반을 경험했습니다.",
+      en: "Built React, TypeScript, and Node.js services while applying AI and n8n to content generation, validation workflows, auth UX, and real-time synchronization.",
+      kr: "React, TypeScript, Node.js 기반 서비스 개발과 함께 AI/n8n 콘텐츠 생성 자동화, 검증 흐름, 인증 UX, 실시간 동기화를 다뤘습니다.",
     },
   },
   {
@@ -62,8 +62,8 @@ const experienceHighlights = [
     },
     period: "2021.02 - 2021.08",
     detail: {
-      en: "Developed a Vue-based AI writing service with component UI, state management, and client-server integration.",
-      kr: "Vue 기반 AI 글쓰기 서비스를 개발하며 컴포넌트 UI, 상태 관리, 클라이언트-서버 연동을 경험했습니다.",
+      en: "Developed a Vue-based AI writing service and learned how user input, stored data, UI state, and AI model workflows connect in a full-stack product.",
+      kr: "Vue 기반 AI 글쓰기 서비스를 개발하며 사용자 입력, 저장 데이터, 화면 상태, AI 모델 흐름이 연결되는 풀스택 서비스 구조를 경험했습니다.",
     },
   },
 ];
@@ -122,16 +122,16 @@ const hobbies = [
 
 const aboutCopy = {
   intro: {
-    en: "I am a web developer who identifies user pain points and turns inefficient workflows into practical web solutions. I enjoy using AI and automation to simplify complex problems into better service experiences, while creating convenient and reliable web experiences through careful attention to UI details and the overall user flow.",
-    kr: "사용자가 느끼는 불편함을 빠르게 파악하고, 비효율적인 흐름을 실용적인 웹 솔루션으로 개선하는 웹 개발자입니다. AI와 자동화를 활용해 복잡한 문제를 단순한 서비스 경험으로 바꾸는 일을 즐기며, 작은 UI 디테일부터 전체 사용 흐름까지 더 편리하고 안정적인 웹 경험을 만들고자 합니다.",
+    en: "I am a developer who analyzes repetitive tasks, operational bottlenecks, and user friction, then turns them into practical structures through web development, AI, and automation. I value fast experimentation, validation, and tools that people can adopt in their daily work.",
+    kr: "반복 작업, 운영 병목, 사용자 불편을 분석하고 웹 개발, AI, 자동화로 실무에서 바로 쓸 수 있는 구조로 바꾸는 개발자입니다. 빠르게 시도하고 검증하며, 사용자가 일상 업무에서 편하게 적용할 수 있는 도구를 만드는 일을 중요하게 생각합니다.",
   },
   survey: {
-    en: "Survey UI, webview, internal tools",
-    kr: "설문 UI, 웹뷰, 내부 도구 개발",
+    en: "Operational workflow automation",
+    kr: "운영 워크플로 자동화",
   },
   bootcamp: {
-    en: "React, TypeScript, Node.js development",
-    kr: "React, TypeScript, Node.js 기반 개발",
+    en: "AI/n8n validation pipelines",
+    kr: "AI/n8n 검증 파이프라인",
   },
   languages: {
     en: "Communication skills in English, Japanese, and Korean",
@@ -139,16 +139,16 @@ const aboutCopy = {
   },
   drivesMe: [
     {
-      en: "I first became interested in development when I realized that code could make complex problems easier to handle. Even with small features, seeing people actually use what I built and experience less inconvenience helped me understand the impact that development can have.",
-      kr: "제가 개발에 흥미를 느끼기 시작한 순간은, 코드를 통해 복잡한 문제를 더 쉽게 다룰 수 있다는 것을 알게 되었을 때였습니다. 작은 기능이라도 누군가가 실제로 사용하고, 그로 인해 불편함이 줄어드는 모습을 보며 개발이 가진 힘을 처음 느꼈습니다.",
+      en: "I first became interested in development when I saw that code could turn repeated manual work into a clear, reusable process. Even a small tool can have real impact when it removes friction from someone’s daily workflow.",
+      kr: "코드가 반복적인 수작업을 명확하고 재사용 가능한 프로세스로 바꿀 수 있다는 것을 보며 개발에 흥미를 느끼기 시작했습니다. 작은 도구라도 누군가의 매일 반복되는 업무 마찰을 줄인다면 실제적인 영향을 만들 수 있다고 생각합니다.",
     },
     {
-      en: "At dataSpring Korea, I carried this interest into practice as a survey programmer and automation lead. Designing and building internal tools on my own was not always easy, but I found great fulfillment in seeing repetitive tasks reduced and users work more efficiently. This experience became a key turning point that led me toward user-centered web development.",
-      kr: "데이터스프링코리아에서는 설문 프로그래머이자 자동화 담당자로 일하며 이러한 관심을 실무로 이어갔습니다. 혼자서 내부 도구를 설계하고 구현하는 과정은 쉽지 않았지만, 반복 업무가 줄고 사용자가 더 효율적으로 일하는 모습을 보며 큰 보람을 느꼈습니다. 이 경험은 제가 사용자 중심의 웹 개발을 지향하게 된 중요한 계기가 되었습니다.",
+      en: "At dataSpring Korea, I analyzed quotation, survey programming, and app/webview response flows that depended on repeated checks across sheets, documents, and external platforms. I built internal web tools, automation scripts, validation logic, and reusable script documentation so teams could reduce preparation time, input errors, and manual checks. Designing and building internal tools on my own was not always easy, but I found great fulfillment in seeing repetitive tasks reduced and users work more efficiently.",
+      kr: "데이터스프링코리아에서는 견적, 설문 프로그래밍, 앱/웹뷰 응답 흐름처럼 시트, 문서, 외부 플랫폼을 반복 확인해야 하는 업무를 분석했습니다. 내부 웹 도구, 자동화 스크립트, 검증 로직, 재사용 가능한 스크립트 문서를 만들어 작업 시간, 입력 오류, 수동 확인 과정을 줄였습니다. 혼자서 내부 도구를 설계하고 구현하는 과정은 쉽지 않았지만, 반복 업무가 줄고 사용자가 더 효율적으로 일하는 모습을 보며 큰 보람을 느꼈습니다",
     },
     {
-      en: "Later, through Naver Boostcamp, I expanded the way I approach problem-solving by building web services and using AI in the development process. Learning new technologies, structuring ambiguous problems, and turning ideas into working products strengthened my confidence as a developer.",
-      kr: "이후 네이버 부스트캠프에서는 웹 서비스 개발과 AI 활용을 경험하며, 문제를 해결하는 방식의 폭을 넓혔습니다. 새로운 기술을 배우고, 모호한 문제를 구조화하고, 실제로 동작하는 결과물로 만들어내는 과정에서 개발자로서의 확신도 커졌습니다.",
+      en: "Through Naver Boostcamp, I expanded this approach into product engineering. I built an n8n and AI-based pipeline that converted curriculum data into validated JSONL quiz content, then worked on auth loading UX, real-time timer accuracy, rendering boundaries, testing, and refactoring. Learning new technologies, structuring ambiguous problems, and turning ideas into working products helped me grow significantly as a developer.",
+      kr: "네이버 부스트캠프에서는 이러한 접근을 제품 개발로 확장했습니다. 커리큘럼 데이터를 검증된 JSONL 퀴즈 콘텐츠로 변환하는 n8n과 AI 기반 파이프라인을 만들고, 인증 로딩 UX, 실시간 타이머 정확도, 렌더링 경계, 테스트와 리팩토링을 다뤘습니다. 새로운 기술을 빠르게 배우고, 모호한 문제를 구조화하고, 실제로 동작하는 결과물로 만들어내는 과정을 통해 개발자로서 크게 성장했습니다.",
     },
     {
       en: "For me, the joy of development starts with solving problems, but it becomes most rewarding when those solutions reduce someone’s inconvenience and create a better user experience. I want to keep learning and growing by identifying small user pain points and turning them into more convenient experiences.",
@@ -183,7 +183,7 @@ export function AboutSection({ id = "about", avatarPriority = true }: AboutSecti
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/48">
-                  web developer
+                  Automation | Web Developer
                 </p>
                 <h2 className="mt-2 text-3xl font-semibold leading-tight text-black dark:text-white">
                   {locale === "en" ? "Peter Nam" : "남승현"}
